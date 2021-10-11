@@ -1,0 +1,3 @@
+Web aplication in Django to To handle transport.
+It is used to determine deliveries and preview delivery locations on the map.
+Ultimately, the application should reduce delivery costs by visually suggesting a combination of shipping

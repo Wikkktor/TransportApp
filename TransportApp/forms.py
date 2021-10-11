@@ -1,6 +1,7 @@
 from django import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
-
+from django.contrib.admin.widgets import AdminDateWidget
+from django.forms.fields import DateField
 
 class CarsModelForm(forms.ModelForm):
     class Meta:
@@ -42,4 +43,7 @@ class OrdersModelForm(forms.ModelForm):
             'delivery_time': 'Termin dostawy',
             'opis': 'Dodatkowe info',
             'status': 'Status zamówienia'
+        }
+        widgets = {
+            'delivery_time': forms.DateInput(attrs={'class': AdminDateWidget}),
         }
