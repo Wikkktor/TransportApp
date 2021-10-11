@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Transport App</title>
+</head>
+<body>
+
+<div class="main_menu">
+    <a href="{% url 'base' %}"> Strona Główna </a><br>
+    <a href=""> Zamówienia </a><br>
+    <a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a><br>
+    <a href="{% url 'driver_add_view' %}"> Dodaj kierowce </a><br>
+    <a href="{% url 'car_add_view' %}"> Dodaj samochód </a><br>
+    <a href="{% url 'transport_add_view' %}"> Dodaj transport </a><br>
+    <a href=""> Ustawienia </a><br>
+</div>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
