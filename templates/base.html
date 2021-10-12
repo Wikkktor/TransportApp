@@ -21,15 +21,9 @@
         <li> <a href=""> Ustawienia </a></li>
     </ul>
 </div>
-{#{% block base %}#}
-{#<div class="orders_cars">#}
-{#    <ul class="baseOrders">#}
-{#        {% for order in orders %}#}
-{#            <li> {{ order }} </li>#}
-{#        {% endfor %}#}
-{#    </ul>#}
-{#</div>#}
-{#{% endblock %}#}
+<div class="map">
+    {{ my_map|safe }}
+</div>
 {% block content %}
 
 {% endblock %}

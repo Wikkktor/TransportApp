@@ -1,4 +1,3 @@
-from django.core.checks import messages
 from django.shortcuts import render
 import folium
 from TransportApp import forms
@@ -9,10 +8,13 @@ from django.views.generic import CreateView, ListView, DeleteView
 
 class IndexView(View):
     def get(self, request):
-        orders = Orders.objects.all()
-        cars = Cars.objects.all()
-        content = {'orders': orders, 'cars': cars}
-        response = render(request, 'base.html', content)
+        map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
+        test = folium.Html('<b>Hello world</b>', script=True)
+        popup = folium.Popup(test, max_width=2650)
+        folium.RegularPolygonMarker(location=[52.100052000000005, 20.804530483807866], popup=popup).add_to(map)
+        map = map._repr_html_()
+        context = {'my_map': map}
+        response = render(request, 'base.html', context)
         return response
 
 
@@ -87,3 +89,13 @@ class OrderDeleteView(DeleteView):
 class OrderDetailView(DeleteView):
     model = Orders
     template_name = "detail_order.html"
+
+
+def show_map(request):
+    map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
+    test = folium.Html('<b>Hello world</b>', script=True)
+    popup = folium.Popup(test, max_width=2650)
+    folium.RegularPolygonMarker(location=[52.100052000000005, 20.804530483807866], popup=popup).add_to(map)
+    map = map._repr_html_()
+    context = {'my_map': map}
+    return render(request, 'polls/show_folium_map.html', context)

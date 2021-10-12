@@ -46,3 +46,7 @@
 .button:hover {
     background-color: #111;
 }
+.map {
+    width: 1000px;
+    height: 1000px;
+}
