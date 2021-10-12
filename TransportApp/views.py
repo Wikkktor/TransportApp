@@ -4,12 +4,13 @@ import folium
 from TransportApp import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DeleteView
 
 
 class IndexView(View):
     def get(self, request):
-        response = render(request, 'base.html')
+        orders = Orders.objects.all()
+        response = render(request, 'base.html', {'orders': orders})
         return response
 
 
@@ -24,6 +25,12 @@ class CarListView(ListView):
     template_name = 'cars.html'
 
 
+class CarDeleteView(DeleteView):
+    model = Cars
+    template_name = 'form.html'
+    success_url = '/'
+
+
 class DriverAddView(CreateView):
     model = Drivers
     template_name = 'form.html'
@@ -33,6 +40,12 @@ class DriverAddView(CreateView):
 class DriverListView(ListView):
     model = Drivers
     template_name = 'drivers.html'
+
+
+class DriverDeleteView(DeleteView):
+    model = Drivers
+    template_name = 'form.html'
+    success_url = '/'
 
 
 class TransportAddView(CreateView):
@@ -46,6 +59,12 @@ class TransportListView(ListView):
     template_name = 'transports.html'
 
 
+class TransportDeleteView(DeleteView):
+    model = Transport
+    template_name = 'form.html'
+    success_url = '/'
+
+
 class OrderAddView(CreateView):
     model = Orders
     template_name = 'form.html'
@@ -55,3 +74,9 @@ class OrderAddView(CreateView):
 class OrderListView(ListView):
     model = Orders
     template_name = 'orders.html'
+
+
+class OrderDeleteView(DeleteView):
+    model = Orders
+    template_name = 'form.html'
+    success_url = '/'

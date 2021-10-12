@@ -10,14 +10,23 @@
     <title>Transport App</title>
 </head>
 <body>
-<div class="main">
-    <ul class="mainMenu">
+<div class="mainMenu">
+    <ul>
         <li><a href="{% url 'base' %}"> Strona Główna </a></li>
         <li><a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a></li>
         <li><a href="{% url 'driver_add_view' %}"> Dodaj kierowce </a> </li>
         <li> <a href="{% url 'car_add_view' %}"> Dodaj samochód </a></li>
         <li> <a href="{% url 'transport_add_view' %}"> Dodaj transport </a></li>
         <li> <a href=""> Ustawienia </a></li>
+    </ul>
+</div>
+<div class="header">
+    <h1> Aplikacja do obsługi transportu/dostaw</h1>
+    <p>Wykonana przez <strong> Wiktora Karaszewicza</strong></p>
+    <p>Cel Aplikacji:</p>
+    <ul>
+        <li>Zmniejszenie kosztów</li>
+        <li>Prosta obsługa, w jednym miejscu</li>
     </ul>
 </div>
 {% block content %}

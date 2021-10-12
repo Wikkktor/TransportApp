@@ -18,6 +18,9 @@ class Orders(models.Model):
     def get_absolute_url(self):
         return reverse('order_list_view')
 
+    def get_delete_url(self):
+        return reverse('order_delete_view', args=(self.pk,))
+
     def __str__(self):
         return "Dane " + self.client + " Adres " + self.delivery_address
 
@@ -28,6 +31,9 @@ class Drivers(models.Model):
     def get_absolute_url(self):
         return reverse('driver_list_view')
 
+    def get_delete_url(self):
+        return reverse('driver_delete_view', args=(self.pk,))
+
     def __str__(self):
         return self.name
 
@@ -37,6 +43,9 @@ class Cars(models.Model):
 
     def get_absolute_url(self):
         return reverse('car_list_view')
+
+    def get_delete_url(self):
+        return reverse('car_delete_view', args=(self.pk,))
 
     def __str__(self):
         return self.name
@@ -49,6 +58,9 @@ class Transport(models.Model):
 
     def get_absolute_url(self):
         return reverse('transport_list_view')
+
+    def get_delete_url(self):
+        return reverse('transport_delete_view', args=(self.pk,))
 
     def __str__(self):
         name = f"Samochód: {self.car.name} Kierowca: {self.driver.name} zamówienie: {self.order.name}"

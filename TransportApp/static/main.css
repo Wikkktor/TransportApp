@@ -5,25 +5,30 @@
   overflow: hidden;
   background-color: #333;
 }
-li {
-  float: left;
-}
-li a {
+
+.mainMenu li a {
   display: block;
   justify-content: center;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 16px;
   text-decoration: none;
 }
-li a:hover {
+.mainMenu li a:hover {
   background-color: #111;
 }
-table {
-  margin: 60px;
+.mainMenu ul{
+   width: 100%;
+   display: table;
+   text-align: center;
 }
-.list_item {
-  display: block;
-  color: #333333;
+.mainMenu ul li{
+     display: inline-block;
+     float: none;
 }
-
+.header li {
+    display: block;
+}
+.OrdersView {
+    color: black
+}
