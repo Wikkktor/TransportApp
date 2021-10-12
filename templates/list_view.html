@@ -1,5 +1,7 @@
 <ul class="list_view">
     {% for item in object_list %}
-        <li class="list_item">{{ item}}</li><br>
+        <li class="list_item">{{ item }}
+        <a href="{{ item.get_delete_url }}"> Usuń </a>
+        </li>
     {% endfor %}
 </ul>

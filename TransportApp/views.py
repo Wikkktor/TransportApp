@@ -10,7 +10,9 @@ from django.views.generic import CreateView, ListView, DeleteView
 class IndexView(View):
     def get(self, request):
         orders = Orders.objects.all()
-        response = render(request, 'base.html', {'orders': orders})
+        cars = Cars.objects.all()
+        content = {'orders': orders, 'cars': cars}
+        response = render(request, 'base.html', content)
         return response
 
 
@@ -80,3 +82,8 @@ class OrderDeleteView(DeleteView):
     model = Orders
     template_name = 'form.html'
     success_url = '/'
+
+
+class OrderDetailView(DeleteView):
+    model = Orders
+    template_name = "detail_order.html"

@@ -16,7 +16,7 @@ class Orders(models.Model):
     opis = models.TextField(null=True)
 
     def get_absolute_url(self):
-        return reverse('order_list_view')
+        return reverse('order_detail_view', args=(self.pk,))
 
     def get_delete_url(self):
         return reverse('order_delete_view', args=(self.pk,))
