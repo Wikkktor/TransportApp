@@ -1,10 +1,10 @@
 from django.core.checks import messages
 from django.shortcuts import render
-
+import folium
 from TransportApp import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
 
 class IndexView(View):
@@ -20,11 +20,21 @@ class CarAddView(CreateView):
     success_url = "/"
 
 
+class CarListView(ListView):
+    model = Cars
+    template_name = 'cars.html'
+
+
 class DriverAddView(CreateView):
     model = Drivers
     template_name = 'form.html'
     form_class = forms.DriversModelForm
     success_url = "/"
+
+
+class DriverListView(ListView):
+    model = Drivers
+    template_name = 'drivers.html'
 
 
 class TransportAddView(CreateView):
@@ -34,8 +44,18 @@ class TransportAddView(CreateView):
     success_url = "/"
 
 
+class TransportListView(ListView):
+    model = Transport
+    template_name = 'transports.html'
+
+
 class OrderAddView(CreateView):
     model = Orders
     template_name = 'form.html'
     form_class = forms.OrdersModelForm
     success_url = "/"
+
+
+class OrderListView(ListView):
+    model = Orders
+    template_name = 'orders.html'

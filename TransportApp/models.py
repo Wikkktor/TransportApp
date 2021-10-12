@@ -15,6 +15,9 @@ class Orders(models.Model):
     status = models.IntegerField(choices=DELIVERY_STATUS, default=1)
     opis = models.TextField(null=True)
 
+    def __str__(self):
+        return "Dane " + self.client + " Adres " + self.delivery_address
+
 
 class Drivers(models.Model):
     name = models.CharField(max_length=255)
@@ -34,3 +37,7 @@ class Transport(models.Model):
     car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     driver = models.ForeignKey(Drivers, on_delete=models.CASCADE)
     order = models.ManyToManyField(Orders)
+
+    def __str__(self):
+        name = f"Samochód: {self.car.name} Kierowca: {self.driver.name} zamówienie: {self.order.name}"
+        return name

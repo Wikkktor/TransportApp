@@ -1,0 +1,29 @@
+.mainMenu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a:hover {
+  background-color: #111;
+}
+table {
+  margin: 60px;
+}
+.list_item {
+  display: block;
+  color: #333333;
+}
+

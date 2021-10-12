@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
 import passwords
 from passwords import Secret_key
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'TransportApp.apps.TransportConfig',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [

@@ -1,7 +1,7 @@
 from django import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
-from django.contrib.admin.widgets import AdminDateWidget
-from django.forms.fields import DateField
+from bootstrap_datepicker_plus import DatePickerInput
+
 
 class CarsModelForm(forms.ModelForm):
     class Meta:
@@ -32,6 +32,10 @@ class TransportModelForm(forms.ModelForm):
         }
 
 
+class DateInput(forms.DateTimeInput):
+    input_type = "datetime-local"
+
+
 class OrdersModelForm(forms.ModelForm):
     class Meta:
         model = Orders
@@ -45,5 +49,6 @@ class OrdersModelForm(forms.ModelForm):
             'status': 'Status zamówienia'
         }
         widgets = {
-            'delivery_time': forms.DateInput(attrs={'class': AdminDateWidget}),
+            'delivery_time': DateInput
         }
+
