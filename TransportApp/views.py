@@ -17,7 +17,6 @@ class CarAddView(CreateView):
     model = Cars
     template_name = 'form.html'
     form_class = forms.CarsModelForm
-    success_url = "/"
 
 
 class CarListView(ListView):
@@ -29,7 +28,6 @@ class DriverAddView(CreateView):
     model = Drivers
     template_name = 'form.html'
     form_class = forms.DriversModelForm
-    success_url = "/"
 
 
 class DriverListView(ListView):
@@ -41,7 +39,6 @@ class TransportAddView(CreateView):
     model = Transport
     template_name = 'form.html'
     form_class = forms.TransportModelForm
-    success_url = "/"
 
 
 class TransportListView(ListView):
@@ -53,7 +50,6 @@ class OrderAddView(CreateView):
     model = Orders
     template_name = 'form.html'
     form_class = forms.OrdersModelForm
-    success_url = "/"
 
 
 class OrderListView(ListView):
