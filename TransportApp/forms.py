@@ -1,6 +1,5 @@
 from django import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
-from bootstrap_datepicker_plus import DatePickerInput
 
 
 class CarsModelForm(forms.ModelForm):

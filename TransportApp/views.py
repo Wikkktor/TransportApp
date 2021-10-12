@@ -8,12 +8,12 @@ from django.views.generic import CreateView, ListView, DeleteView
 
 class IndexView(View):
     def get(self, request):
-        map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
+        my_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
         test = folium.Html('<b>Hello world</b>', script=True)
         popup = folium.Popup(test, max_width=2650)
-        folium.RegularPolygonMarker(location=[52.100052000000005, 20.804530483807866], popup=popup).add_to(map)
-        map = map._repr_html_()
-        context = {'my_map': map}
+        folium.RegularPolygonMarker(location=[52.100052000000005, 20.804530483807866], popup=popup).add_to(my_map)
+        my_map = my_map._repr_html_()
+        context = {'my_map': my_map}
         response = render(request, 'base.html', context)
         return response
 
@@ -89,13 +89,3 @@ class OrderDeleteView(DeleteView):
 class OrderDetailView(DeleteView):
     model = Orders
     template_name = "detail_order.html"
-
-
-def show_map(request):
-    map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
-    test = folium.Html('<b>Hello world</b>', script=True)
-    popup = folium.Popup(test, max_width=2650)
-    folium.RegularPolygonMarker(location=[52.100052000000005, 20.804530483807866], popup=popup).add_to(map)
-    map = map._repr_html_()
-    context = {'my_map': map}
-    return render(request, 'polls/show_folium_map.html', context)
