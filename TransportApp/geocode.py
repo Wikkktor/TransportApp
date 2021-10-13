@@ -1,6 +1,8 @@
 from geopy.exc import GeocoderUnavailable
 from geopy.geocoders import Nominatim
 
+from TransportApp.models import Orders
+
 
 def get_location_geo(adress):
     lst = []
@@ -13,7 +15,5 @@ def get_location_geo(adress):
     except GeocoderUnavailable:
         return lst
 
-
-print(get_location_geo("Narcyzowa 8, Kanie"))
 
 

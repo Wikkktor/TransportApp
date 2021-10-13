@@ -4,16 +4,24 @@ from TransportApp.geocode import get_location_geo
 from TransportApp import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
-from django.views.generic import CreateView, ListView, DeleteView, DetailView
+from django.views.generic import CreateView, ListView, DeleteView
 
 
 class IndexView(View):
     def get(self, request):
         orders = Orders.objects.all().filter(status=1)
         my_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
-        folium.Marker(location=[52.100052000000005, 20.804530483807866], popup="Kabex").add_to(my_map)
-        my_map = my_map._repr_html_()
-        context = {'my_map': my_map, 'orders': orders}
+        folium.Marker(location=[52.100052000000005, 20.804530483807866],
+                      popup="Kabex", icon=folium.Icon(color="blue")).add_to(my_map)
+        for order in orders:
+            location = get_location_geo(order.delivery_address)
+            name = order.client
+            folium.Marker(
+                location=location,
+                popup=name,
+                icon=folium.Icon("red")
+            ).add_to(my_map)
+        context = {'my_map': my_map._repr_html_(), 'orders': orders}
         response = render(request, 'base.html', context)
         return response
 
@@ -112,6 +120,11 @@ class DetailOrderView(View):
             location=geo,
             popup=order.client,
             icon=folium.Icon(color='red', icon='info-sign')
+        ).add_to(detail_map)
+        folium.Marker(
+            location=[52.100052000000005, 20.804530483807866],
+            popup="Kabex",
+            icon=folium.Icon(color='blue')
         ).add_to(detail_map)
         return render(
             request,
