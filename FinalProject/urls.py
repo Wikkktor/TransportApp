@@ -33,6 +33,6 @@ urlpatterns = [
     path('order/add', views.OrderAddView.as_view(), name='order_add_view'),
     path('order/list', views.OrderListView.as_view(), name='order_list_view'),
     path('order/delete/<int:pk>', views.OrderDeleteView.as_view(), name='order_delete_view'),
-    path('order/detail/<int:pk>', views.OrderDetailView.as_view(), name='order_detail_view'),
+    path('order/detail/<int:pk>', views.DetailOrderView.as_view(), name='order_detail_view'),
 
 ]

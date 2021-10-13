@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>Usuń zamówienie</title>
+</head>
+<body>
+<div class="mainMenu">
+    <ul>
+        <li><a href="{% url 'base' %}"> Strona Główna </a></li>
+        <li><a href="{% url 'order_list_view' %}">Lista Zamówień</a></li>
+        <li><a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a></li>
+        <li><a href="{% url 'driver_add_view' %}"> Dodaj kierowce </a></li>
+        <li><a href="{% url 'car_add_view' %}"> Dodaj samochód </a></li>
+        <li><a href="{% url 'transport_add_view' %}"> Dodaj transport </a></li>
+        <li><a href=""> Ustawienia </a></li>
+    </ul>
+</div>
+<div class = 'list'>
+{% block content %}
+    <table class="table">
+        <form id='my_form' method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_table }}
+        </form>
+    </table>
+    <button class='button' form="my_form"> Usuń </button>
+{% endblock %}
+</div>
+</body>
+</html>
