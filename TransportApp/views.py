@@ -10,6 +10,7 @@ class IndexView(View):
     def get(self, request):
         orders = Orders.objects.all().filter(status=1)
         my_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
+        folium.Marker(location=[52.100052000000005, 20.804530483807866], popup="Kabex").add_to(my_map)
         my_map = my_map._repr_html_()
         context = {'my_map': my_map, 'orders': orders}
         response = render(request, 'base.html', context)
@@ -87,3 +88,15 @@ class OrderDeleteView(DeleteView):
 class OrderDetailView(DetailView):
     model = Orders
     template_name = "detail_order.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(OrderDetailView, self).get_context_data(**kwargs)
+        location_order = Orders.objects.get()
+        detail_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
+        folium.Marker(
+            location=[52.12407735, 20.796900403084333],
+            popup="Wiktor Karaszewicz",
+            icon=folium.Icon(color='red', icon='info-sign')
+        ).add_to(detail_map)
+        context['my_map'] = detail_map._repr_html_()
+        return context
