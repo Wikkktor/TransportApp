@@ -8,6 +8,7 @@ body {
   padding: 0;
   overflow: hidden;
   background-color: #30343f;
+  cursor: pointer;
 }
 
 .mainMenu li a {
@@ -75,6 +76,7 @@ body {
 }
 .coint h3{
     margin: 10px 50px;
+    text-align: center;
 }
 a {
     all: unset;
@@ -85,4 +87,21 @@ a {
     color: black;
     font-style: normal;
     cursor: pointer;
+}
+.coint li {
+    background-color: #219ebc;
+    margin: 10px;
+    padding: 10px;
+    list-style-type: none;
+}
+.coint li:hover {
+    background-color: #fefae0;
+    /*margin: 10px;*/
+    /*padding: 10px;*/
+    /*list-style-type: none;*/
+}
+.detail_order_coint {
+    background-color: #fefae0;
+    padding: 10px;
+    text-align: center;
 }
