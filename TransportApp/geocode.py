@@ -3,6 +3,8 @@ from geopy.geocoders import Nominatim
 
 
 def get_location_geo(adress):
+    # Function takes adres as a written address
+    # and returns it as a geocode of the address
     lst = []
     locator = Nominatim(user_agent="Project App")
     location = locator.geocode(adress)

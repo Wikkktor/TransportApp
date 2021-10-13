@@ -48,6 +48,6 @@ class OrdersModelForm(forms.ModelForm):
             'status': 'Status zamówienia'
         }
         widgets = {
-            'delivery_time': DateInput
+            'delivery_time': DateInput,
         }
 

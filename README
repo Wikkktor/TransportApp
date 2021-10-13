@@ -1,3 +1,8 @@
 Web aplication in Django to To handle transport.
 It is used to determine deliveries and preview delivery locations on the map.
-Ultimately, the application should reduce delivery costs by visually suggesting a combination of shipping
+Ultimately, the application should reduce delivery costs by visually suggesting a combination of shipping.
+
+
+When order is added application changes delivery location to geocode and shows destination as a target (marker) on the map.
+
+
