@@ -1,4 +1,46 @@
-{% extends 'base.html' %}
-{% block content %}
-    <p>{{ object }}</p>
-{% endblock %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>Szczegóły zamówienia</title>
+</head>
+<body>
+<div class="mainMenu">
+    <ul>
+        <li><a href="{% url 'base' %}"> Strona Główna </a></li>
+        <li><a href="{% url 'order_list_view' %}">Lista Zamówień</a></li>
+        <li><a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a></li>
+        <li><a href="{% url 'driver_add_view' %}"> Dodaj kierowce </a></li>
+        <li><a href="{% url 'car_add_view' %}"> Dodaj samochód </a></li>
+        <li><a href="{% url 'transport_add_view' %}"> Dodaj transport </a></li>
+        <li><a href=""> Ustawienia </a></li>
+    </ul>
+</div>
+<div class="coint">
+    <div>
+        <p>Imię i nazwisko:</p>
+        <h1>{{ orders.client }}</h1>
+        <p>Adres Dostawy:</p>
+        <h2>{{ orders.delivery_address }}</h2>
+        <p>Numer Telefonu:</p>
+        <h2>{{ orders.phone_number }}</h2>
+        <p>Termin dostawy:</p>
+        <h2>{{ orders.delivery_time }}</h2>
+        <p>Dodatkowe informacje:</p>
+        <h4>{{ orders.opis }}</h4>
+        <p>Status zamówienia:</p>
+        <h4>{{ orders.get_status_display }}</h4>
+    </div>
+    {% if my_map %}
+        <div class ="map">
+            {{ my_map|safe }}
+        </div>
+    {% endif %}
+</div>
+    </body>
+</html>

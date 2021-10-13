@@ -22,7 +22,7 @@ class Orders(models.Model):
         return reverse('order_delete_view', args=(self.pk,))
 
     def __str__(self):
-        return "Dane " + self.client + " Adres " + self.delivery_address
+        return "Klient " + self.client + "\n" " Adres " + self.delivery_address
 
 
 class Drivers(models.Model):

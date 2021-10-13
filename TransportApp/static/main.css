@@ -1,5 +1,5 @@
 body {
-    background-color: #3A506B ;
+    background-color: #126782 ;
 }
 
 .mainMenu {
@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #30343f;
 }
 
 .mainMenu li a {
@@ -32,12 +32,17 @@ body {
 }
 .header li {
     display: block;
+    margin: auto;
+    padding: 10px 16px;
 }
 .OrdersView {
     color: black
 }
+.coint{
+    display: flex;
+}
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #59a5d8; /* Green */
   border: none;
   color: white;
   padding: 15px 32px;
@@ -48,11 +53,36 @@ body {
     margin: 20px;
 }
 .button:hover {
-    background-color: #111;
+    background-color: #0d1b2a;
 }
 .map {
-    width: 1000px;
-    height: 1000px;
+    width:1200px;
     margin: auto;
     padding: 10px;
+}
+.form_view {
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+}
+.form_view input{
+    font-size: 20px;
+    width: 300px;
+}
+.form_view select{
+    font-size: 20px;
+    width: 300px;
+}
+.coint h3{
+    margin: 10px 50px;
+}
+a {
+    all: unset;
+}
+.base_view_orders {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: black;
+    font-style: normal;
+    cursor: pointer;
 }

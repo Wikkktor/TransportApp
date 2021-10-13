@@ -15,16 +15,35 @@
         <li><a href="{% url 'base' %}"> Strona Główna </a></li>
         <li><a href="{% url 'order_list_view' %}">Lista Zamówień</a></li>
         <li><a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a></li>
-        <li><a href="{% url 'driver_add_view' %}"> Dodaj kierowce </a> </li>
-        <li> <a href="{% url 'car_add_view' %}"> Dodaj samochód </a></li>
-        <li> <a href="{% url 'transport_add_view' %}"> Dodaj transport </a></li>
-        <li> <a href=""> Ustawienia </a></li>
+        <li><a href="{% url 'driver_add_view' %}"> Dodaj kierowce </a></li>
+        <li><a href="{% url 'car_add_view' %}"> Dodaj samochód </a></li>
+        <li><a href="{% url 'transport_add_view' %}"> Dodaj transport </a></li>
+        <li><a href=""> Ustawienia </a></li>
     </ul>
 </div>
-<div class="map">
-    {{ my_map|safe }}
-</div>
+<div class="coint">
+    {% if orders %}
+    <div>
+        <h3>Nie zrealizowane zamówienia:</h3>
+        <ul>
+            {% for order in orders %}
+                <li class="base_view_orders"><a href="{{ order.get_absolute_url }}">ID {{ order.id }} <b>{{ order.client }}
+                </b> Telefon: {{ order.phone_number }}<br>
+                {{ order.delivery_address }}
+                </a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% if my_map %}
+    <div class ="map">
+        {{ my_map|safe }}
+    </div>
+{% endif %}
+<div class="form_view">
 {% block content %}
 {% endblock %}
-</body>
+</div>
+</div>
+    </body>
 </html>

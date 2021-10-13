@@ -3,17 +3,15 @@ import folium
 from TransportApp import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
-from django.views.generic import CreateView, ListView, DeleteView
+from django.views.generic import CreateView, ListView, DeleteView, DetailView
 
 
 class IndexView(View):
     def get(self, request):
+        orders = Orders.objects.all().filter(status=1)
         my_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
-        test = folium.Html('<b>Hello world</b>', script=True)
-        popup = folium.Popup(test, max_width=2650)
-        folium.RegularPolygonMarker(location=[52.100052000000005, 20.804530483807866], popup=popup).add_to(my_map)
         my_map = my_map._repr_html_()
-        context = {'my_map': my_map}
+        context = {'my_map': my_map, 'orders': orders}
         response = render(request, 'base.html', context)
         return response
 
@@ -86,6 +84,6 @@ class OrderDeleteView(DeleteView):
     success_url = '/'
 
 
-class OrderDetailView(DeleteView):
+class OrderDetailView(DetailView):
     model = Orders
     template_name = "detail_order.html"
