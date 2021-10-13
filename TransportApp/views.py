@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 import folium
+
+from TransportApp.forms import LoginForm
 from TransportApp.geocode import get_location_geo
 from TransportApp import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
@@ -129,3 +133,19 @@ class DetailOrderView(View):
             'detail_order.html',
             {'orders': order, 'my_map': detail_map._repr_html_()}
         )
+
+
+class LoginView(View):
+    def get(self, request):
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
+
+    def post(self, request):
+        form = LoginForm(request.POST)
+        next_url = request.GET.get('next', '/')
+        if form.is_valid():
+            user = authenticate(request, **form.cleaned_data)
+            if user is not None:
+                login(request, user)
+                return redirect(next_url)
+        return render(request, 'login.html', {'form': form})

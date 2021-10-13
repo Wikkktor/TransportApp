@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <title>Transport App by Wiktor Karaszewicz</title>
+</head>
+<body class="login_body">
+<form class="login" method="post">
+    {% csrf_token %}
+    <h1> Login </h1>
+    <input class='username' type="text" name="" placeholder="username">
+    <input class='password' type="password" name="">
+    <input type="submit" name="" value="Login">
+</form>
+</body>
+</html>
