@@ -1,8 +1,6 @@
 from geopy.exc import GeocoderUnavailable
 from geopy.geocoders import Nominatim
 
-from TransportApp.models import Orders
-
 
 def get_location_geo(adress):
     lst = []

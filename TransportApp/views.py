@@ -94,22 +94,6 @@ class OrderDeleteView(DeleteView):
     success_url = '/'
 
 
-# class OrderDetailView(DetailView):
-#     model = Orders
-#     template_name = "detail_order.html"
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(OrderDetailView, self).get_context_data(**kwargs)
-#         detail_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
-#         folium.Marker(
-#             location=[52.12407735, 20.796900403084333],
-#             popup="Wiktor Karaszewicz",
-#             icon=folium.Icon(color='red', icon='info-sign')
-#         ).add_to(detail_map)
-#         context['my_map'] = detail_map._repr_html_()
-#         return context
-
-
 class DetailOrderView(View):
     def get(self, request, pk):
         order = Orders.objects.get(id=pk)
@@ -119,7 +103,7 @@ class DetailOrderView(View):
         folium.Marker(
             location=geo,
             popup=order.client,
-            icon=folium.Icon(color='red', icon='info-sign')
+            icon=folium.Icon(color='red')
         ).add_to(detail_map)
         folium.Marker(
             location=[52.100052000000005, 20.804530483807866],

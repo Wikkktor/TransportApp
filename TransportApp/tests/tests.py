@@ -3,6 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from conftest import cars
 
+
 @pytest.mark.django_db
 def test_index_view():
     client = Client()
