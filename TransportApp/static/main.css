@@ -128,6 +128,12 @@ a {
 .login label{
     display: none;
 }
+.login ul{
+    display: none;
+}
+.login span{
+    display: none;
+}
 .login h1{
     color: white;
     text-transform: uppercase;

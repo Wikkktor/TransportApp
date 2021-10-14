@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.views import View
-from register.forms import LoginForm
+from register.forms import LoginForm, RegisterForm
 
 
 class LoginView(View):
@@ -30,3 +30,20 @@ class LogoutView(View):
         logout(request)
         return redirect("base")
 
+
+class RegisterView(View):
+    def get(self, request):
+        form = RegisterForm()
+        return render(request, 'registration/register.html', {'form': form})
+
+    def post(self, request):
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password')
+            email = form.cleaned_data.get('email')
+            user = authenticate(username=username, password=raw_password, email=email)
+            login(request, user)
+            return redirect('base')
+        return HttpResponse("Błędne dane")
