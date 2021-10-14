@@ -57,7 +57,7 @@ body {
     background-color: #0d1b2a;
 }
 .map {
-    width:1000px;
+    width:1200px;
     margin: 0;
 }
 .form_view {
@@ -173,16 +173,31 @@ a {
     cursor: pointer;
 }
 .table {
-    background-color: #457b9d;
+    background-color: #219ebc;
     border-radius: 20px;
     margin: 20px;
     padding: 20px;
+    width: 700px;
+}
+.table select{
+    width: 400px;
 }
 .table input, textarea{
     background-color: whitesmoke;
     color: black;
     border-color: #0d1b2a;
+    width: 400px;
 }
 .base_orders {
     margin-left: -45px;
+}
+.transport_form {
+    background-color: #fefae0;
+    text-align: center;
+}
+.transport_form h3 {
+    color: black;
+}
+.list_item {
+    width: 600px;
 }

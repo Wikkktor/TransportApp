@@ -41,6 +41,16 @@
             {{ my_map|safe }}
         </div>
     {% endif %}
+    <div class="transport_form">
+        <h3> Dodaj transport do zamówienia: </h3><br>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <input type="submit" value="Dodaj Transport">
+        </form>
+    </div>
 </div>
+
     </body>
 </html>

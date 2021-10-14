@@ -6,6 +6,7 @@ import folium
 from django.contrib.auth.models import User
 
 # from TransportApp.forms import LoginForm
+from TransportApp.forms import TransportModelForm, TransportForm
 from TransportApp.geocode import get_location_geo
 from TransportApp import forms
 from TransportApp.models import Cars, Transport, Orders, Drivers
@@ -114,7 +115,7 @@ class OrderDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class DetailOrderView(LoginRequiredMixin, View):
-    # Detail order view with marker with order delivery address on map
+    # Detail order view with marker with order delivery address on map and transport form
     def get(self, request, pk):
         order = Orders.objects.get(id=pk)
         adress = order.delivery_address
@@ -130,8 +131,9 @@ class DetailOrderView(LoginRequiredMixin, View):
             popup="Kabex",
             icon=folium.Icon(color='blue')
         ).add_to(detail_map)
+        form = TransportForm()
         return render(
             request,
             'detail_order.html',
-            {'orders': order, 'my_map': detail_map._repr_html_()}
+            {'orders': order, 'my_map': detail_map._repr_html_(), 'form': form}
         )
