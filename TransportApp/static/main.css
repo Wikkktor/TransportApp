@@ -112,7 +112,7 @@ a {
     text-align: center;
     border-radius: 20%;
 }
-.password, .username {
+.login input {
     background: none;
     display: block;
     margin: 20px auto;
@@ -125,12 +125,15 @@ a {
     border-radius: 24px;
     transition: 0.25s;
 }
+.login label{
+    display: none;
+}
 .login h1{
     color: white;
     text-transform: uppercase;
     font-weight: 500;
 }
-.password:focus, .username:focus{
+.login input:focus{
     width: 280px;
     border-color: #2ecc71;
 }
@@ -140,16 +143,25 @@ a {
     margin: 20px auto;
     text-align: center;
     border: 2px solid #2ecc71;
-    padding: 14px 40px;
+    padding: 10px 30px;
     outline: none;
     color: white;
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
+    width: 100px;
 }
 .login input[type='submit']:hover{
     background: #2ecc71;
+    color: black;
 }
 .login_body {
     background-color: #22223b;
+}
+.login_register {
+    color: white;
+}
+.login_register a{
+    color: #3498db;
+    cursor: pointer;
 }

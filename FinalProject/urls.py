@@ -15,8 +15,9 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from TransportApp import views
+from register import views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,6 +35,6 @@ urlpatterns = [
     path('order/list', views.OrderListView.as_view(), name='order_list_view'),
     path('order/delete/<int:pk>', views.OrderDeleteView.as_view(), name='order_delete_view'),
     path('order/detail/<int:pk>', views.DetailOrderView.as_view(), name='order_detail_view'),
-    path('login/', views.LoginView.as_view(), name='login'),
+    path('login/', v.LoginView.as_view(), name='login'),
 
 ]

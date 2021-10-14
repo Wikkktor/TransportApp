@@ -50,8 +50,3 @@ class OrdersModelForm(forms.ModelForm):
         widgets = {
             'delivery_time': DateInput,
         }
-
-
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
