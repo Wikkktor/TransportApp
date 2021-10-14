@@ -1,5 +1,5 @@
 body {
-    background-color: #126782 ;
+    background-color: #22223b ;
 }
 
 .mainMenu {
@@ -76,6 +76,7 @@ body {
 .coint h3{
     margin: 10px 50px;
     text-align: center;
+    color: white;
 }
 a {
     all: unset;
@@ -170,4 +171,15 @@ a {
 .login_register a{
     color: #3498db;
     cursor: pointer;
+}
+.table {
+    background-color: #457b9d;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 20px;
+}
+.table input, textarea{
+    background-color: whitesmoke;
+    color: black;
+    border-color: #0d1b2a;
 }

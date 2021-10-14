@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -39,11 +41,26 @@ class RegisterView(View):
     def post(self, request):
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
-            email = form.cleaned_data.get('email')
-            user = authenticate(username=username, password=raw_password, email=email)
+            user = form.save(commit=False)
+            user_password = form.cleaned_data.get('password')
+            user.set_password(user_password)
+            user.save()
             login(request, user)
+            messages.success(request, "Registration successful")
             return redirect('base')
-        return HttpResponse("Błędne dane")
+        return HttpResponse("Coś poszło nie tak")
+
+
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_password = form.cleaned_data.get('password1')
+#             user = authenticate(username=username, password=raw_password)
+#             login(request, user)
+#             return redirect('home')
+#     else:
+#         form = SignUpForm()
+#     return render(request, 'registration/register.html', {'form': form})

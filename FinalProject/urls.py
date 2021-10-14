@@ -36,6 +36,7 @@ urlpatterns = [
     path('order/delete/<int:pk>', views.OrderDeleteView.as_view(), name='order_delete_view'),
     path('order/detail/<int:pk>', views.DetailOrderView.as_view(), name='order_detail_view'),
     path('login/', v.LoginView.as_view(), name='login'),
-    path('register/', v.RegisterView.as_view(), name='register')
+    path('register/', v.RegisterView.as_view(), name='register'),
+    path('logout/', v.LogoutView.as_view(), name='logut')
 
 ]
