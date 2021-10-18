@@ -14,12 +14,17 @@ class Orders(models.Model):
     delivery_time = models.DateTimeField()
     status = models.IntegerField(choices=DELIVERY_STATUS, default=1)
     opis = models.TextField(null=True)
+    lat = models.CharField(max_length=300, null=True)
+    lon = models.CharField(max_length=300, null=True)
 
     def get_absolute_url(self):
         return reverse('order_detail_view', args=(self.pk,))
 
     def get_delete_url(self):
         return reverse('order_delete_view', args=(self.pk,))
+
+    def get_modify_url(self):
+        return reverse('order_update_view', args=(self.pk,))
 
     def __str__(self):
         return "Klient " + self.client + "\n" " Adres " + self.delivery_address

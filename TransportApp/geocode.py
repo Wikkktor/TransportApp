@@ -16,4 +16,3 @@ def get_location_geo(adress):
         return lst
 
 
-

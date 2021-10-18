@@ -178,6 +178,7 @@ a {
     margin: 20px;
     padding: 20px;
     width: 700px;
+    text-align: center;
 }
 .table select{
     width: 400px;
@@ -200,4 +201,19 @@ a {
 }
 .list_item {
     width: 600px;
+}
+.ord_det_edit {
+    margin: 100px 30px;
+    width: 100px;
+    height: 70px;
+    background-color: #0d1b2a;
+    color: #fefae0;
+    border-radius: 20%;
+    border-color: #0d1b2a;
+}
+
+.ord_det_edit:hover {
+    background-color: green;
+    color: white;
+    border-color: #0d1b2a;
 }

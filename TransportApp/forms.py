@@ -38,7 +38,7 @@ class DateInput(forms.DateTimeInput):
 class OrdersModelForm(forms.ModelForm):
     class Meta:
         model = Orders
-        fields = '__all__'
+        fields = ('client', 'phone_number', 'delivery_address', 'delivery_time', 'opis', 'status')
         labels = {
             'client': 'Klient',
             'phone_number': 'Numer Telefonu',

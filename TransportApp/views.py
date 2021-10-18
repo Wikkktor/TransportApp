@@ -6,12 +6,16 @@ import folium
 from django.contrib.auth.models import User
 
 # from TransportApp.forms import LoginForm
-from TransportApp.forms import TransportModelForm, TransportForm
-from TransportApp.geocode import get_location_geo
+from django.urls import reverse
+
+from TransportApp.forms import TransportModelForm, TransportForm, OrdersModelForm
+# from TransportApp.geocode import get_location_geo
 from TransportApp import forms
+# from TransportApp.geocode import get_location_geo
+from TransportApp.geocode import get_location_geo
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
-from django.views.generic import CreateView, ListView, DeleteView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 
 
 class IndexView(LoginRequiredMixin, View):
@@ -22,10 +26,12 @@ class IndexView(LoginRequiredMixin, View):
         folium.Marker(location=[52.100052000000005, 20.804530483807866],
                       popup="Kabex", icon=folium.Icon(color="blue")).add_to(my_map)
         for order in orders:
-            location = get_location_geo(order.delivery_address)
+            # location = get_location_geo(order.delivery_address)
+            lat = order.lat
+            lon = order.lon
             name = order.client
             folium.Marker(
-                location=location,
+                location=[lat, lon],
                 popup=name,
                 icon=folium.Icon("red")
             ).add_to(my_map)
@@ -54,6 +60,14 @@ class CarDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/'
 
 
+class CarUpdateView(LoginRequiredMixin, UpdateView):
+    # Modify view
+    model = Cars
+    template_name = 'form.html'
+    fields = '__all__'
+    success_url = '/'
+
+
 class DriverAddView(LoginRequiredMixin, CreateView):
     # Adding by form view
     model = Drivers
@@ -71,6 +85,14 @@ class DriverDeleteView(LoginRequiredMixin, DeleteView):
     # Deleting View
     model = Drivers
     template_name = 'form.html'
+    success_url = '/'
+
+
+class DriverUpdateView(LoginRequiredMixin, UpdateView):
+    # Modify view
+    model = Drivers
+    template_name = 'form.html'
+    fields = '__all__'
     success_url = '/'
 
 
@@ -94,11 +116,36 @@ class TransportDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/'
 
 
-class OrderAddView(LoginRequiredMixin, CreateView):
-    # Adding by form view
-    model = Orders
+class TransportUpdateView(LoginRequiredMixin, UpdateView):
+    # Modify view
+    model = Transport
     template_name = 'form.html'
-    form_class = forms.OrdersModelForm
+    fields = '__all__'
+    success_url = '/'
+
+
+class OrderAddView(LoginRequiredMixin, View):
+    # Add view, localization changes to geocode
+    def get(self, request):
+        form = OrdersModelForm()
+        return render(request,
+                      'form.html', {'form': form})
+
+    def post(self, request):
+        delivery_adres = request.POST['delivery_address']
+        geo = get_location_geo(delivery_adres)
+        lat = geo[0]
+        lon = geo[1]
+        Orders.objects.create(client=request.POST['client'],
+                              phone_number=request.POST['phone_number'],
+                              delivery_address=delivery_adres,
+                              delivery_time=request.POST['delivery_time'],
+                              status=request.POST['status'],
+                              opis=request.POST['opis'],
+                              lat=lat,
+                              lon=lon,
+                              )
+        return redirect('/order/list')
 
 
 class OrderListView(LoginRequiredMixin, ListView):
@@ -114,15 +161,21 @@ class OrderDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/'
 
 
+class OrderUpdateView(LoginRequiredMixin, UpdateView):
+    # Modify view
+    model = Orders
+    template_name = 'modify_order.html'
+    fields = '__all__'
+    success_url = '/'
+
+
 class DetailOrderView(LoginRequiredMixin, View):
     # Detail order view with marker with order delivery address on map and transport form
     def get(self, request, pk):
         order = Orders.objects.get(id=pk)
-        adress = order.delivery_address
-        geo = get_location_geo(adress)
-        detail_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
+        detail_map = folium.Map(location=[order.lat, order.lon], zoom_start=16)
         folium.Marker(
-            location=geo,
+            location=[order.lat, order.lon],
             popup=order.client,
             icon=folium.Icon(color='red')
         ).add_to(detail_map)
@@ -135,5 +188,12 @@ class DetailOrderView(LoginRequiredMixin, View):
         return render(
             request,
             'detail_order.html',
-            {'orders': order, 'my_map': detail_map._repr_html_(), 'form': form}
-        )
+            {'order': order, 'my_map': detail_map._repr_html_(), 'form': form})
+
+    def post(self, request, pk):
+        driver = Drivers.objects.get(id=request.POST['driver'])
+        car = Cars.objects.get(id=request.POST['car'])
+        order = Orders.objects.get(id=pk)
+        t = Transport.objects.create(driver=driver, car=car)
+        t.order.add(order)
+        return redirect("/")

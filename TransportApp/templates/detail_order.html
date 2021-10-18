@@ -24,17 +24,17 @@
 <div class="coint">
     <div class="detail_order_coint">
         <p>Imię i nazwisko:</p>
-        <h1>{{ orders.client }}</h1>
+        <h1>{{ order.client }}</h1>
         <p>Adres Dostawy:</p>
-        <h2>{{ orders.delivery_address }}</h2>
+        <h2>{{ order.delivery_address }}</h2>
         <p>Numer Telefonu:</p>
-        <h2>{{ orders.phone_number }}</h2>
+        <h2>{{ order.phone_number }}</h2>
         <p>Termin dostawy:</p>
-        <h2>{{ orders.delivery_time }}</h2>
+        <h2>{{ order.delivery_time }}</h2>
         <p>Dodatkowe informacje:</p>
-        <h4>{{ orders.opis }}</h4>
+        <h4>{{ order.opis }}</h4>
         <p>Status zamówienia:</p>
-        <h4>{{ orders.get_status_display }}</h4>
+        <h4>{{ order.get_status_display }}</h4>
     </div>
     {% if my_map %}
         <div class ="map">
@@ -47,8 +47,11 @@
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
-            <input type="submit" value="Dodaj Transport">
+            <input class='order_detail_transport' type="submit" value="Dodaj Transport">
         </form>
+        <a href="{{ order.get_modify_url }}">
+        <button class="ord_det_edit">Edytuj zamówienie</button>
+        </a>
     </div>
 </div>
 
