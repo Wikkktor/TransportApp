@@ -217,3 +217,9 @@ a {
     color: white;
     border-color: #0d1b2a;
 }
+.logo {
+    text-align: center;
+}
+.logo img{
+    width: 400px;
+}

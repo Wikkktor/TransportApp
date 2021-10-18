@@ -8,7 +8,7 @@ from conftest import cars
 def test_index_view():
     client = Client()
     response = client.get(reverse('base'))
-    assert response.status_code == 200
+    assert response.status_code == 302
 
 
 def test_empty_post_index_view():
