@@ -29,11 +29,19 @@ def orders():
     return lst
 
 
-# @pytest.fixture
-# def transports(orders, drivers, cars):
-#     lst = []
-#     for x in range(10):
-#         lst.append(Transport.objects.create(
-#             car=cars[x], driver=drivers[x], order=orders[x]
-#         ))
-#     return lst
+@pytest.fixture
+def transports(orders, drivers, cars):
+    lst = []
+    for x in range(10):
+        car = cars[x]
+        driver = drivers[x]
+        t = Transport.objects.create(car=car, driver=driver)
+        order = orders[x]
+        t.order.add(order)
+        lst.append(t)
+    return lst
+
+
+@pytest.fixture
+def login():
+    return User.objects.create(username='Adam')

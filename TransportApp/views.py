@@ -1,17 +1,8 @@
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import folium
-from django.contrib.auth.models import User
-
-# from TransportApp.forms import LoginForm
-from django.urls import reverse
-
 from TransportApp.forms import TransportModelForm, TransportForm, OrdersModelForm
-# from TransportApp.geocode import get_location_geo
 from TransportApp import forms
-# from TransportApp.geocode import get_location_geo
 from TransportApp.geocode import get_location_geo
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
