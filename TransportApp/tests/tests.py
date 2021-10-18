@@ -318,8 +318,118 @@ def test_orders_detail_view_get_logged(login, orders):
     assert response.status_code == 200
 
 
-
 # Modify View
 
 
+@pytest.mark.django_db
+def test_car_modify_get_not_logged(cars):
+    client = Client()
+    response = client.get(reverse('car_modify_view', kwargs={'pk': cars[0].pk}))
+    assert response.status_code == 302
 
+
+@pytest.mark.django_db
+def test_car_modify_get_logged(cars, login):
+    client = Client()
+    client.force_login(login)
+    response = client.get(reverse('car_modify_view', kwargs={'pk': cars[0].pk}))
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_car_modify_post_logged(cars, login):
+    client = Client()
+    client.force_login(login)
+    a = {
+        'name': 'Samochód'
+    }
+    response = client.post(reverse('car_modify_view', kwargs={'pk': cars[0].pk}), data=a)
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_driver_modify_get_not_logged(drivers):
+    client = Client()
+    response = client.get(reverse('driver_update_view', kwargs={'pk': drivers[0].pk}))
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_driver_modify_get_logged(drivers, login):
+    client = Client()
+    client.force_login(login)
+    response = client.get(reverse('driver_update_view', kwargs={'pk': drivers[0].pk}))
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_driver_modify_post_logged(drivers, login):
+    client = Client()
+    client.force_login(login)
+    a = {
+        'name': 'Andrzej'
+    }
+    response = client.post(reverse('driver_update_view', kwargs={'pk': drivers[0].pk}), data=a)
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_order_modify_get_not_logged(orders):
+    client = Client()
+    response = client.get(reverse('order_update_view', kwargs={'pk': orders[0].pk}))
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_order_modify_get_logged(orders, login):
+    client = Client()
+    client.force_login(login)
+    response = client.get(reverse('order_update_view', kwargs={'pk': orders[0].pk}))
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_order_modify_post_logged(orders, login):
+    client = Client()
+    client.force_login(login)
+    a = {
+        'client': 'Andrzej Nowak',
+        'phone_number': 111222333,
+        'delivery_address': 'Warszawa Zachodnia',
+        'delivery_day': '2021-11-30',
+        'delivery_hour': '15:00:00',
+        'status': 1,
+        'opis': 'Test',
+        'lat': 53.222,
+        'lon': 20.11
+    }
+    response = client.post(reverse('order_update_view', kwargs={'pk': orders[0].pk}), data=a)
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_transport_modify_get_not_logged(transports):
+    client = Client()
+    response = client.get(reverse('transport_update_view', kwargs={'pk': transports[0].pk}))
+    assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_transport_modify_get_logged(transports, login):
+    client = Client()
+    client.force_login(login)
+    response = client.get(reverse('transport_update_view', kwargs={'pk': transports[0].pk}))
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_transport_modify_post_logged(transports, login, cars, drivers, orders):
+    client = Client()
+    client.force_login(login)
+    a = {
+        'car': cars[0].id,
+        'driver': drivers[0].id,
+        'order': orders[0].id,
+    }
+    response = client.post(reverse('transport_update_view', kwargs={'pk': transports[0].pk}), data=a)
+    assert response.status_code == 302
