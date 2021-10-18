@@ -27,10 +27,13 @@
         <h3>Nie zrealizowane zamówienia:</h3>
         <ul>
             {% for order in orders %}
-                <li class="base_view_orders"><a href="{{ order.get_absolute_url }}">ID {{ order.id }} <b>{{ order.client }}
-                </b> Telefon: {{ order.phone_number }}<br>
-                {{ order.delivery_address }}
-                </a></li>
+
+                <a href="{{ order.get_absolute_url }}">
+                    <li class="base_view_orders"> ID {{ order.id }} <b>{{ order.client }}
+                    </b> Telefon: {{ order.phone_number }}<br>
+                    {{ order.delivery_address }}</li>
+                </a>
+
             {% endfor %}
         </ul>
     </div>

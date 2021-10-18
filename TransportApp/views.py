@@ -17,7 +17,6 @@ class IndexView(LoginRequiredMixin, View):
         folium.Marker(location=[52.100052000000005, 20.804530483807866],
                       popup="Kabex", icon=folium.Icon(color="blue")).add_to(my_map)
         for order in orders:
-            # location = get_location_geo(order.delivery_address)
             lat = order.lat
             lon = order.lon
             name = order.client
@@ -130,7 +129,8 @@ class OrderAddView(LoginRequiredMixin, View):
         Orders.objects.create(client=request.POST['client'],
                               phone_number=request.POST['phone_number'],
                               delivery_address=delivery_adres,
-                              delivery_time=request.POST['delivery_time'],
+                              delivery_day=request.POST['delivery_day'],
+                              delivery_hour=request.POST['delivery_hour'],
                               status=request.POST['status'],
                               opis=request.POST['opis'],
                               lat=lat,

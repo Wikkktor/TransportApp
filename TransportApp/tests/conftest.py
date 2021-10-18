@@ -25,7 +25,7 @@ def orders():
     for order in range(10):
         lst.append(Orders.objects.create(
             client="John", phone_number=1231, delivery_address="Warsaw",
-            delivery_time='2012-09-04 06:00:00.000000-08:00'))
+            delivery_day='2012-09-04', delivery_hour= '16:30:00'))
     return lst
 
 

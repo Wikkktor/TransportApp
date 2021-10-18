@@ -3,7 +3,6 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 from TransportApp.models import Cars, Drivers
-from conftest import cars
 
 
 @pytest.mark.django_db
@@ -149,16 +148,20 @@ def test_order_add_get_logged(login):
     assert response.status_code == 200
 
 
-# @pytest.mark.django_db
-# def test_order_add_post(login):
-#     client = Client()
-#     client.force_login(login)
-#     a = {
-#         'client': 'Albert',
-#         'phone_number': 333222111,
-#         'delivery_address': 'Narcyzowa 8 Kanie'
-#         'delivery_time':
-#     }
-#     response = client.post(reverse('order_add_view'), data=a)
-#     assert response.status_code == 302
-#     Drivers.objects.get(**a)
+@pytest.mark.django_db
+def test_order_add_post(login):
+    client = Client()
+    client.force_login(login)
+    a = {
+        'client': 'Albert',
+        'phone_number': 333222111,
+        'delivery_address': 'Narcyzowa 8 Kanie',
+        'delivery_day': '2021-10-28',
+        'delivery_hour': '16:00:00',
+        'status': 1,
+        'opis': 'Test',
+    }
+    response = client.post(reverse('order_add_view'), data=a)
+    assert response.status_code == 302
+    # Drivers.objects.get(**a)
+

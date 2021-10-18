@@ -1,3 +1,5 @@
+from datetime import date, datetime
+
 from django.db import models
 from django.urls import reverse
 
@@ -11,7 +13,8 @@ class Orders(models.Model):
     client = models.CharField(max_length=255)
     phone_number = models.IntegerField()
     delivery_address = models.CharField(max_length=300)
-    delivery_time = models.DateTimeField()
+    delivery_day = models.DateField(default=date.today)
+    delivery_hour = models.TimeField(default=datetime.now)
     status = models.IntegerField(choices=DELIVERY_STATUS, default=1)
     opis = models.TextField(null=True)
     lat = models.CharField(max_length=300, null=True)
