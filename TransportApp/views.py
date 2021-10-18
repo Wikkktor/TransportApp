@@ -6,7 +6,7 @@ from TransportApp import forms
 from TransportApp.geocode import get_location_geo
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
-from django.views.generic import CreateView, ListView, DeleteView, UpdateView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
 
 
 class IndexView(LoginRequiredMixin, View):
@@ -58,6 +58,12 @@ class CarUpdateView(LoginRequiredMixin, UpdateView):
     success_url = '/'
 
 
+class CarDetailView(LoginRequiredMixin, DetailView):
+    # Detail View
+    model = Cars
+    template_name = 'detail_car.html'
+
+
 class DriverAddView(LoginRequiredMixin, CreateView):
     # Adding by form view
     model = Drivers
@@ -86,6 +92,12 @@ class DriverUpdateView(LoginRequiredMixin, UpdateView):
     success_url = '/'
 
 
+class DriverDetailView(LoginRequiredMixin, DetailView):
+    # Detail View
+    model = Drivers
+    template_name = 'detail_driver.html'
+
+
 class TransportAddView(LoginRequiredMixin, CreateView):
     # Adding by form view
     model = Transport
@@ -112,6 +124,12 @@ class TransportUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'form.html'
     fields = '__all__'
     success_url = '/'
+
+
+class TransportDetailView(LoginRequiredMixin, DetailView):
+    # Detail View
+    model = Transport
+    template_name = 'detail_transport.html'
 
 
 class OrderAddView(LoginRequiredMixin, View):

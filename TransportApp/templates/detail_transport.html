@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <p> Imie kierowcy</p>
+    {{ transport.driver.name }}
+    <p> Nazwa samochodu </p>
+    {{ transport.car.name }}
+    <p> Szczegóły zamówienia </p>
+    {{ transport.order }}
+{% endblock %}
