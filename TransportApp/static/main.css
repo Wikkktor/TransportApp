@@ -225,3 +225,10 @@ a {
 .logo img{
     width: 400px;
 }
+.base_orders ul {
+    height: 674px;
+    overflow: auto;
+}
+.base_orders ul li {
+    margin: 10px;
+}
