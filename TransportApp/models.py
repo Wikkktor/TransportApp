@@ -7,7 +7,7 @@ from django.urls import reverse
 class Orders(models.Model):
     DELIVERY_STATUS = [
         (1, "Nowe"),
-        (2, "W realizacji"),
+        (2, "Zdefiniowano Transport"),
         (3, "Zrealizowane")
     ]
     client = models.CharField(max_length=255)

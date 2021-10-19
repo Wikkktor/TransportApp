@@ -232,3 +232,30 @@ a {
 .base_orders ul li {
     margin: 10px;
 }
+.list_orders_h2 {
+    text-align: center;
+    color: #fefae0;
+}
+.not_done_orders {
+    width: 35%;
+    height: 800px;
+    overflow: auto;
+}
+.done_orders {
+    width: 30%;
+    height: 800px;
+}
+.in_progress_orders {
+    width: 30%;
+    height: 800px;
+    overflow: auto;
+}
+.not_done_orders li {
+    border-radius: 10px;
+}
+.done_orders li {
+    border-radius: 10px;
+}
+.in_progress_orders li {
+    border-radius: 10px;
+}

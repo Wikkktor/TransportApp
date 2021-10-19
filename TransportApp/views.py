@@ -157,11 +157,13 @@ class OrderAddView(LoginRequiredMixin, View):
         return redirect('/order/list')
 
 
-class OrderListView(LoginRequiredMixin, ListView):
-    # List view
-    model = Orders
-    template_name = 'orders.html'
-    ordering = ['delivery_day', 'delivery_hour']
+class OrderListView(LoginRequiredMixin, View):
+    def get(self, request):
+        not_done_orders = Orders.objects.all().filter(status=1).order_by('delivery_day', 'delivery_hour')
+        in_process_orders = Orders.objects.all().filter(status=2).order_by('delivery_day', 'delivery_hour')
+        done_orders = Orders.objects.all().filter(status=3).order_by('delivery_day', 'delivery_hour')
+        context = {'done_orders': done_orders, 'in_process_orders': in_process_orders, 'not_done_orders': not_done_orders}
+        return render(request, 'orders_list_view.html', context)
 
 
 class OrderDeleteView(LoginRequiredMixin, DeleteView):
@@ -206,4 +208,6 @@ class DetailOrderView(LoginRequiredMixin, View):
         order = Orders.objects.get(id=pk)
         t = Transport.objects.create(driver=driver, car=car)
         t.order.add(order)
+        order.status = 2
+        order.save()
         return redirect("/")
