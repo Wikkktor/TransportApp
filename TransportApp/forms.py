@@ -36,6 +36,10 @@ class DateInput(forms.DateTimeInput):
 
 
 class OrdersModelForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(OrdersModelForm, self).__init__(*args, **kwargs)
+        self.fields['opis'].required = False
+
     class Meta:
         model = Orders
         fields = ('client', 'phone_number', 'delivery_address', 'delivery_day', 'delivery_hour', 'opis', 'status')
@@ -51,6 +55,8 @@ class OrdersModelForm(forms.ModelForm):
         widgets = {
             'delivery_time': DateInput,
         }
+
+
 
 
 class TransportForm(forms.Form):
