@@ -211,3 +211,35 @@ class DetailOrderView(LoginRequiredMixin, View):
         order.status = 2
         order.save()
         return redirect("/")
+
+
+class ChangeOrderStatusTransportDefined(View):
+    def get(self, request, pk):
+        order = Orders.objects.get(id=pk)
+        order.status = 2
+        order.save()
+        return redirect('order_detail_view', pk)
+
+
+class ChangeOrderStatusNew(View):
+    def get(self, request, pk):
+        order = Orders.objects.get(id=pk)
+        order.status = 1
+        order.save()
+        return redirect('order_detail_view', pk)
+
+
+class ChangeOrderStatusTransportCancel(View):
+    def get(self, request, pk):
+        order = Orders.objects.get(id=pk)
+        order.status = 4
+        order.save()
+        return redirect('order_detail_view', pk)
+
+
+class ChangeOrderStatusTransportDone(View):
+    def get(self, request, pk):
+        order = Orders.objects.get(id=pk)
+        order.status = 3
+        order.save()
+        return redirect('order_detail_view', pk)

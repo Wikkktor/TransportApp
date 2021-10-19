@@ -192,9 +192,9 @@ def test_transport_add_get_logged(login):
 def test_transport_add_post(login, cars, drivers, orders):
     client = Client()
     client.force_login(login)
-    car = Cars.objects.get(pk=1)
-    driver = Drivers.objects.get(pk=1)
-    order = Orders.objects.get(pk=1)
+    car = cars[0]
+    driver = drivers[0]
+    order = orders[0]
     a = {
         'car': car.id,
         'driver': driver.id,

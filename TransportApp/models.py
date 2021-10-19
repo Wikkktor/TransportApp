@@ -8,7 +8,8 @@ class Orders(models.Model):
     DELIVERY_STATUS = [
         (1, "Nowe"),
         (2, "Zdefiniowano Transport"),
-        (3, "Zrealizowane")
+        (3, "Zrealizowane"),
+        (4, 'Anulowane')
     ]
     client = models.CharField(max_length=255)
     phone_number = models.IntegerField()

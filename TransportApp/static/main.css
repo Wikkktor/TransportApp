@@ -197,6 +197,12 @@ a {
     background-color: #fefae0;
     text-align: center;
 }
+.transport_form footer{
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    font-size: 20px;
+}
 .transport_form h3 {
     color: black;
 }
@@ -258,4 +264,17 @@ a {
 }
 .in_progress_orders li {
     border-radius: 10px;
+}
+.detail_order_buttons button {
+    flex-direction: column;
+    text-align: center;
+    background-color: #0d1b2a;
+    color: #fefae0;
+    border-color: #0d1b2a;
+    width: 75px;
+    height: 60px;
+    margin: auto;
+}
+.detail_order_buttons {
+    text-align: center;
 }
