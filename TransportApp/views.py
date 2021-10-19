@@ -12,7 +12,7 @@ from django.views.generic import CreateView, ListView, DeleteView, UpdateView, D
 class IndexView(LoginRequiredMixin, View):
     # Main base view: list of unrealized orders with markers on map
     def get(self, request):
-        orders = Orders.objects.all().filter(status=1)
+        orders = Orders.objects.all().filter(status=1).order_by('delivery_day')
         my_map = folium.Map(location=[52.100052000000005, 20.804530483807866], zoom_start=16)
         folium.Marker(location=[52.100052000000005, 20.804530483807866],
                       popup="Kabex", icon=folium.Icon(color="blue")).add_to(my_map)
@@ -161,6 +161,7 @@ class OrderListView(LoginRequiredMixin, ListView):
     # List view
     model = Orders
     template_name = 'orders.html'
+    ordering = ['delivery_day']
 
 
 class OrderDeleteView(LoginRequiredMixin, DeleteView):

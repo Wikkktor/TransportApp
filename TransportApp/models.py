@@ -30,7 +30,7 @@ class Orders(models.Model):
         return reverse('order_update_view', args=(self.pk,))
 
     def __str__(self):
-        return "Klient " + self.client + "\n" " Adres " + self.delivery_address
+        return self.client + "\n" " Adres " + self.delivery_address + " Data " + str(self.delivery_day)
 
 
 class Drivers(models.Model):

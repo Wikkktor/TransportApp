@@ -87,6 +87,7 @@ a {
     color: black;
     font-style: normal;
     cursor: pointer;
+    border-radius: 10px;
 }
 .coint li {
     background-color: #219ebc;
@@ -201,6 +202,7 @@ a {
 }
 .list_item {
     width: 600px;
+    border-radius: 10px;
 }
 .ord_det_edit {
     margin: 100px 30px;
