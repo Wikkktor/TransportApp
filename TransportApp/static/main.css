@@ -302,3 +302,49 @@ a {
     margin: 10px;
     border-radius: 30px;
 }
+.settings_coint {
+    display: flex;
+}
+.settings_coint div {
+    margin: 10px;
+}
+.all_orders li {
+    background-color: #219ebc;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    list-style-type: none;
+    font-size: 18px;
+    height: 30px;
+    width: 800px;
+}
+.all_orders ul {
+    max-height: 800px;
+    overflow: auto;
+    padding: 10px;
+}
+.all_orders h3 {
+    text-align: center;
+}
+.all_orders {
+    background-color: #fefae0;
+    border-radius: 30px;
+}
+.no_flex {
+    background-color: #219ebc;
+    border-radius: 10px;
+    list-style-type: none;
+}
+.no_flex button {
+    background-color: #22223b;
+    border-color: #22223b;
+    color: white;
+}
+.no_flex button:hover {
+    background-color: white;
+    border-color: white;
+    color: black;
+}
+.no_flex li {
+    list-style-type: none;
+}
