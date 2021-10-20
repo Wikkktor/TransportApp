@@ -252,6 +252,6 @@ class SettingsView(View, LoginRequiredMixin):
     def get(self, request):
         cars = Cars.objects.all()
         drivers = Drivers.objects.all()
-        context = {'cars': cars, 'drivers': drivers}
-
+        orders = Orders.objects.all().order_by('delivery_day', 'delivery_hour')
+        context = {'cars': cars, 'drivers': drivers, 'orders': orders}
         return render(request, 'settings.html', context)

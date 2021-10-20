@@ -22,21 +22,43 @@
     </ul>
 </div>
 <div class="settings_coint">
-    <div class="cars">
-        <h3> Zdefiniowane pojazdy:</h3>
-        <ul>
-            {% for car in cars %}
-                <li><h4>{{ car }}</h4></li>
-                <a href="{{ car.get_modify_url }}"> Edytuj </a>
-            {% endfor %}
-        </ul>
-
+    <div class="no_flex">
+        <div class="cars">
+            <h3> Zdefiniowane pojazdy:</h3>
+            <ul>
+                {% for car in cars %}
+                    <li><h4>{{ car }}</h4></li>
+                    <a class="settings_modify" href="{{ car.get_modify_url }}">
+                        <button>Edytuj</button>
+                    </a>
+                    <a class="settings_delete" href="{{ car.get_delete_url }}">
+                        <button>Usuń</button>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="drivers">
+            <h3> Zdefiniowani kierowcy</h3>
+            <ul>
+                {% for driver in drivers %}
+                    <li><h4>{{ driver }}</h4></li>
+                    <a class="settings_modify" href="{{ driver.get_modify_url }}">
+                        <button>Edytuj</button>
+                    </a>
+                    <a class="settings_delete" href="{{ driver.get_delete_url }}">
+                        <button>Usuń</button>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
-    <div class="drivers">
-        <h3> Zdefiniowani kierowcy</h3>
+    <div class="all_orders">
+        <h3>Historia wszystkich zamówień</h3>
         <ul>
-            {% for driver in drivers %}
-            <li><h4>{{ driver }}</h4></li>
+            {% for order in orders %}
+                <a href="{{ order.get_absolute_url }}">
+                    <li> {{ order }}</li>
+                </a>
             {% endfor %}
         </ul>
     </div>
