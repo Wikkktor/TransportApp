@@ -275,6 +275,29 @@ a {
     height: 60px;
     margin: auto;
 }
+.detail_order_buttons button:hover {
+    background-color: #30343f;
+}
 .detail_order_buttons {
     text-align: center;
+}
+.order_detail_transport {
+    background-color: #0d1b2a;
+    border-color: #0d1b2a;
+    color: #fefae0;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+}
+.order_detail_transport:hover {
+    background-color: #22223b;
+}
+.transport_form select {
+    background-color: #0d1b2a;
+    border-color: #0d1b2a;
+    color: #fefae0;
+}
+.transport_form form {
+    background-color: #219ebc;
+    margin: 10px;
 }

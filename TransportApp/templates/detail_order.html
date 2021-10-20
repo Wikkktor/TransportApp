@@ -45,6 +45,7 @@
     <div class="transport_form">
         <h3> Dodaj transport do zamówienia: </h3><br>
         <form method="post">
+            <br>
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
