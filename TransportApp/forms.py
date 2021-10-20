@@ -42,7 +42,7 @@ class OrdersModelForm(forms.ModelForm):
 
     class Meta:
         model = Orders
-        fields = ('client', 'phone_number', 'delivery_address', 'delivery_day', 'delivery_hour', 'opis', 'status')
+        fields = ('client', 'phone_number', 'delivery_address', 'delivery_day', 'delivery_hour', 'opis')
         labels = {
             'client': 'Klient',
             'phone_number': 'Numer Telefonu',
@@ -50,7 +50,6 @@ class OrdersModelForm(forms.ModelForm):
             'delivery_day': 'Dzień dostawy',
             'delivery_hour': 'Godzina dostawy',
             'opis': 'Dodatkowe info',
-            'status': 'Status zamówienia'
         }
         widgets = {
             'delivery_time': DateInput,
