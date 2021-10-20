@@ -318,9 +318,12 @@ a {
     height: 30px;
     width: 800px;
 }
+.all_orders li:hover {
+    background-color: #22223b;
+    color: white;
+}
 .all_orders ul {
     max-height: 800px;
-    overflow: auto;
     padding: 10px;
 }
 .all_orders h3 {
@@ -334,11 +337,14 @@ a {
     background-color: #219ebc;
     border-radius: 10px;
     list-style-type: none;
+    max-width: 800px;
+    overflow: auto;
 }
 .no_flex button {
     background-color: #22223b;
     border-color: #22223b;
     color: white;
+    align-content: center;
 }
 .no_flex button:hover {
     background-color: white;
@@ -347,4 +353,8 @@ a {
 }
 .no_flex li {
     list-style-type: none;
+}
+.settings_coint div {
+    max-height: 800px;
+    overflow: auto;
 }
