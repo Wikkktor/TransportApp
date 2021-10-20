@@ -200,7 +200,7 @@ a {
 .transport_form {
     background-color: #fefae0;
     text-align: center;
-    width: 30%;
+    width: 25%;
 }
 .transport_form footer{
     text-align: center;
@@ -276,7 +276,7 @@ a {
     background-color: #0d1b2a;
     color: #fefae0;
     border-color: #0d1b2a;
-    width: 75px;
+    width: 90px;
     height: 60px;
     margin: auto;
 }
@@ -297,7 +297,7 @@ a {
 .order_detail_transport:hover {
     background-color: #22223b;
 }
-.transport_form select {
+.transport_form select{
     background-color: #0d1b2a;
     border-color: #0d1b2a;
     color: #fefae0;
