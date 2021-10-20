@@ -42,6 +42,9 @@ body {
 .coint{
     display: flex;
 }
+.list {
+    text-align: center;
+}
 .button {
   background-color: #59a5d8; /* Green */
   border: none;
@@ -180,7 +183,7 @@ a {
 .table {
     background-color: #219ebc;
     border-radius: 20px;
-    margin: 20px;
+    margin: auto;
     padding: 20px;
     width: 700px;
     text-align: center;
