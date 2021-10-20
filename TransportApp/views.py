@@ -30,6 +30,9 @@ class IndexView(LoginRequiredMixin, View):
         return response
 
 
+# Car Views
+
+
 class CarAddView(LoginRequiredMixin, CreateView):
     # Adding by form view
     model = Cars
@@ -243,3 +246,12 @@ class ChangeOrderStatusTransportDone(View):
         order.status = 3
         order.save()
         return redirect('order_detail_view', pk)
+
+
+class SettingsView(View, LoginRequiredMixin):
+    def get(self, request):
+        cars = Cars.objects.all()
+        drivers = Drivers.objects.all()
+        context = {'cars': cars, 'drivers': drivers}
+
+        return render(request, 'settings.html', context)

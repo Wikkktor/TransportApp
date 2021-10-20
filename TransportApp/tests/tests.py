@@ -70,10 +70,10 @@ def test_order_list_is_not_empty(login, orders):
     client.force_login(login)
     response = client.get(reverse('order_list_view'))
     assert response.status_code == 200
-    orders_list = response.context['object_list']
-    assert orders_list.count() == len(orders)
+    not_done_orders = response.context['not_done_orders']
+    assert not_done_orders.count() == len(orders)
     for order in orders:
-        assert order in orders_list
+        assert order in not_done_orders
 
 
 @pytest.mark.django_db

@@ -21,32 +21,23 @@
         <li><a href="{% url 'settings' %}"> Ustawienia </a></li>
     </ul>
 </div>
-<div class="coint">
-    {% if orders %}
-        <div class="base_orders">
-        <h3>Nie zrealizowane zamówienia:</h3>
+<div class="settings_coint">
+    <div class="cars">
+        <h3> Zdefiniowane pojazdy:</h3>
         <ul>
-            {% for order in orders %}
+            {% for car in cars %}
+                <li><h4>{{ car }}</h4></li>
+                <a href="{{ car.get_modify_url }}"> Edytuj </a>
+            {% endfor %}
+        </ul>
 
-                <a href="{{ order.get_absolute_url }}">
-                    <li class="base_view_orders"> ID {{ order.id }} <b>{{ order.client }}
-                    </b> Telefon: {{ order.phone_number }}<br>
-                    {{ order.delivery_address }} {{ order.delivery_day }}</li>
-                </a>
-
+    </div>
+    <div class="drivers">
+        <h3> Zdefiniowani kierowcy</h3>
+        <ul>
+            {% for driver in drivers %}
+            <li><h4>{{ driver }}</h4></li>
             {% endfor %}
         </ul>
     </div>
-    {% endif %}
-{% if my_map %}
-    <div class ="map">
-        {{ my_map|safe }}
-    </div>
-{% endif %}
-<div class="form_view">
-{% block content %}
-{% endblock %}
 </div>
-</div>
-    </body>
-</html>
