@@ -95,6 +95,9 @@ a {
     padding: 10px;
     list-style-type: none;
 }
+.coint {
+    margin-top: 20px;
+}
 .coint li:hover {
     background-color: #fefae0;
 }
@@ -102,6 +105,7 @@ a {
     background-color: #fefae0;
     padding: 10px;
     text-align: center;
+    width: 25%;
 }
 .login {
     width: 300px;
@@ -196,6 +200,7 @@ a {
 .transport_form {
     background-color: #fefae0;
     text-align: center;
+    width: 30%;
 }
 .transport_form footer{
     text-align: center;
