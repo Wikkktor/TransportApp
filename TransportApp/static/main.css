@@ -232,7 +232,7 @@ a {
     width: 400px;
 }
 .base_orders ul {
-    height: 674px;
+    height: 85%;
     overflow: auto;
 }
 .base_orders ul li {
@@ -357,4 +357,10 @@ a {
 .settings_coint div {
     max-height: 800px;
     overflow: auto;
+}
+.base_orders, .map {
+    width: 100%;
+}
+.base_orders {
+    width: 40%;
 }
