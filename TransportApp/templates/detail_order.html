@@ -50,13 +50,14 @@
             {{ form.media }}
             {{ form.as_p }}
             <input class='order_detail_transport' type="submit" value="Dodaj Transport">
+
         </form>
         <a href="{{ order.get_modify_url }}">
         <button class="ord_det_edit">Edytuj zamówienie</button>
         </a>
         <div class="detail_order_buttons">
             <h3>Zmień Status</h3>
-            <a href="{% url 'TransportDefined' pk=order.id %}"><button>Transport Zdefiniowany</button></a>
+            <a href="{% url 'TransportDefined' pk=order.id %}"><button>Transport</button></a>
             <a href="{% url 'DoneOrder' pk=order.id %}"><button>Zrealizowane</button></a>
             <a href="{% url 'CancelOrder' pk=order.id %}"><button>Anulowane</button></a>
             <a href="{% url 'NewOrder' pk=order.id %}"><button>Nowe</button></a>
