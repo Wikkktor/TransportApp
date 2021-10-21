@@ -56,8 +56,6 @@ class OrdersModelForm(forms.ModelForm):
         }
 
 
-
-
 class TransportForm(forms.Form):
     car = forms.ModelChoiceField(queryset=Cars.objects.all(), label="Samochód")
     driver = forms.ModelChoiceField(queryset=Drivers.objects.all(), label='Kierowca')

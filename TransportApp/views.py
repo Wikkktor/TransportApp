@@ -1,12 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 import folium
-from TransportApp.forms import TransportModelForm, TransportForm, OrdersModelForm
+
+from TransportApp.filters import OrderFilter
+from TransportApp.forms import TransportForm, OrdersModelForm
 from TransportApp import forms
 from TransportApp.geocode import get_location_geo
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
+from django_filters.views import FilterView
 
 
 class IndexView(LoginRequiredMixin, View):
@@ -255,3 +259,17 @@ class SettingsView(View, LoginRequiredMixin):
         orders = Orders.objects.all().order_by('delivery_day', 'delivery_hour')
         context = {'cars': cars, 'drivers': drivers, 'orders': orders}
         return render(request, 'settings.html', context)
+
+
+class FilterOrderView(LoginRequiredMixin, FilterView):
+    model = Orders
+    template_name = 'order_filter.html'
+    filterset_class = OrderFilter
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            context['Orders'] = Orders.objects.get(pk=1)
+            return context
+        except ObjectDoesNotExist:
+            return context
