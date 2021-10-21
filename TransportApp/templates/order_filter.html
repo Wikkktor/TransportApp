@@ -21,14 +21,19 @@
         <li><a href="{% url 'settings' %}"> Ustawienia </a></li>
     </ul>
 </div>
-<div class="filter">
-    <form class='filter_form' method="get">
-        {{ filter.form.as_p }}
-        <input type="submit">
-    </form>
+<div class="filter_view">
+    <div class="filter_form">
+        <form method="get">
+            {{ filter.form.as_p }}
+                <br>
+            <button type="submit">Szukaj</button>
+        </form>
+    </div>
     <ul class="filter">
         {% for item in object_list %}
-            <li>{{ item }}</li>
+            <a href="{{ item.get_absolute_url }}">
+                <li>{{ item }}</li>
+            </a>
         {% endfor %}
     </ul>
 </div>
