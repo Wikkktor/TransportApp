@@ -219,7 +219,7 @@ a {
     border-radius: 10px;
 }
 .ord_det_edit {
-    margin: 100px 30px;
+    margin: 20px;
     width: 100px;
     height: 70px;
     background-color: #0d1b2a;
@@ -232,6 +232,12 @@ a {
     background-color: green;
     color: white;
     border-color: #0d1b2a;
+}
+.order_detail_transport {
+    margin: 10px;
+}
+.detail_order_buttons a {
+    text-align: center;
 }
 .logo {
     text-align: center;
@@ -378,6 +384,7 @@ a {
 .filter ul{
     text-align: center;
     margin: auto;
+    width: 800px;
 }
 .filter li {
     background-color: #219ebc;
@@ -412,4 +419,21 @@ a {
     background-color: #2ecc71;
     border-color: #2ecc71;
     color: #22223b;
+}
+.filter_link {
+    font-size: 25px;
+    margin: 5px;
+    background-color: #3498db;
+    border-color: #3498db;
+    border-radius: 10px;
+}
+.filter_link:hover {
+    background-color: black;
+    border-color: black;
+    color: white;
+}
+.filter_view p {
+    font-size: 20px;
+    margin: 15px;
+    color: white;
 }
