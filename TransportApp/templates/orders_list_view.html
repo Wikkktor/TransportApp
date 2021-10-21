@@ -10,8 +10,8 @@
             <ul>
                 {% for order in not_done_orders %}
                     <a href="{{ order.get_absolute_url }}">
-                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i>
-                            <b>{{ order.delivery_day }}</b> {{ order.delivery_hour }}</li>
+                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i><br>
+                            <b>{{ order.delivery_day|date:"d/m/Y" }}</b> {{ order.delivery_hour|time:'H:i' }}</li>
                     </a>
                 {% endfor %}
             </ul>
@@ -21,8 +21,8 @@
             <ul>
                 {% for order in in_process_orders %}
                     <a href="{{ order.get_absolute_url }}">
-                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i>
-                            <b>{{ order.delivery_day }}</b> {{ order.delivery_hour }}</li>
+                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i><br>
+                            <b>{{ order.delivery_day|date:"d/m/Y" }}</b> {{ order.delivery_hour|time:'H:i' }}</li>
                     </a>
                 {% endfor %}
             </ul>
@@ -32,8 +32,8 @@
             <ul>
                 {% for order in done_orders %}
                     <a href="{{ order.get_absolute_url }}">
-                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i>
-                            <b>{{ order.delivery_day }}</b> {{ order.delivery_hour }}</li>
+                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i><br>
+                            <b>{{ order.delivery_day|date:"d/m/Y" }}</b> {{ order.delivery_hour|time:'H:i' }}</li>
                     </a>
                 {% endfor %}
             </ul>
@@ -43,8 +43,8 @@
             <ul>
                 {% for order in cancel_orders %}
                     <a href="{{ order.get_absolute_url }}">
-                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i>
-                            <b>{{ order.delivery_day }}</b> {{ order.delivery_hour }}</li>
+                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i><br>
+                            <b>{{ order.delivery_day|date:"d/m/Y" }}</b> {{ order.delivery_hour|time:'H:i' }}</li>
                     </a>
                 {% endfor %}
             </ul>

@@ -30,7 +30,8 @@
                     <a href="{{ order.get_absolute_url }}">
                         <li class="base_view_orders"> ID {{ order.id }} <b>{{ order.client }}
                         </b> Telefon: {{ order.phone_number }}<br>
-                            {{ order.delivery_address }} {{ order.delivery_day }}</li>
+                            {{ order.delivery_address }} &nbsp <b>{{ order.delivery_day|date:"d/m/Y" }}
+                            {{ order.delivery_hour|time:'H:i' }}</b></li>
                     </a>
 
                 {% endfor %}
