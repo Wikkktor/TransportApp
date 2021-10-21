@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <a href="{% url 'order_filter' %}"><button class="filter_link"> Wyszukaj zamówienie </button></a>
+    <a href="{% url 'order_filter' %}">
+        <button class="filter_link"> Wyszukaj zamówienie</button>
+    </a>
     <div class="coint">
         <div class="not_done_orders">
-            <h2 class="list_orders_h2">Not Done Orders</h2>
+            <h2 class="list_orders_h2">Nowe zamówienia</h2>
             <ul>
                 {% for order in not_done_orders %}
                     <a href="{{ order.get_absolute_url }}">
@@ -26,9 +28,20 @@
             </ul>
         </div>
         <div class="done_orders">
-            <h2 class="list_orders_h2">Done Orders</h2>
+            <h2 class="list_orders_h2">Zrealizowane zamówienia</h2>
             <ul>
                 {% for order in done_orders %}
+                    <a href="{{ order.get_absolute_url }}">
+                        <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i>
+                            <b>{{ order.delivery_day }}</b> {{ order.delivery_hour }}</li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="done_orders">
+            <h2 class="list_orders_h2">Anulowane zamówienia</h2>
+            <ul>
+                {% for order in cancel_orders %}
                     <a href="{{ order.get_absolute_url }}">
                         <li><strong>{{ order.client }}</strong> <i>{{ order.delivery_address }}</i>
                             <b>{{ order.delivery_day }}</b> {{ order.delivery_hour }}</li>

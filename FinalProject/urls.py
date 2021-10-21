@@ -48,7 +48,7 @@ urlpatterns = [
     path('order/detail/<int:pk>/status/2', views.ChangeOrderStatusTransportDefined.as_view(), name='TransportDefined'),
     path('order/detail/<int:pk>/status/1', views.ChangeOrderStatusNew.as_view(), name='NewOrder'),
     path('order/detail/<int:pk>/status/3', views.ChangeOrderStatusTransportDone.as_view(), name='DoneOrder'),
-    path('order/detail/<int:pk>/status/3', views.ChangeOrderStatusTransportCancel.as_view(), name='CancelOrder'),
+    path('order/detail/<int:pk>/status/4', views.ChangeOrderStatusTransportCancel.as_view(), name='CancelOrder'),
     path('settings/', views.SettingsView.as_view(), name='settings'),
     path('order/filter/', views.FilterOrderView.as_view(), name='order_filter')
 

@@ -169,7 +169,9 @@ class OrderListView(LoginRequiredMixin, View):
         not_done_orders = Orders.objects.all().filter(status=1).order_by('delivery_day', 'delivery_hour')
         in_process_orders = Orders.objects.all().filter(status=2).order_by('delivery_day', 'delivery_hour')
         done_orders = Orders.objects.all().filter(status=3).order_by('delivery_day', 'delivery_hour')
-        context = {'done_orders': done_orders, 'in_process_orders': in_process_orders, 'not_done_orders': not_done_orders}
+        cancel_orders = Orders.objects.all().filter(status=4).order_by('delivery_day', 'delivery_hour')
+        context = {'done_orders': done_orders, 'in_process_orders': in_process_orders,
+                   'not_done_orders': not_done_orders, 'cancel_orders': cancel_orders}
         return render(request, 'orders_list_view.html', context)
 
 
