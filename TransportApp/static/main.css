@@ -437,3 +437,12 @@ a {
     margin: 15px;
     color: white;
 }
+.settin_button {
+    background-color: #fefae0;
+    text-align: center;
+    border-radius: 10px;
+}
+.settin_button button {
+    margin-bottom: 5px;
+    width: 90px;
+}

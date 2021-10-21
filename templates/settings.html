@@ -37,7 +37,7 @@
                 {% endfor %}
             </ul>
         </div>
-    <br>
+        <br>
         <div class="drivers">
             <h3> Zdefiniowani kierowcy</h3>
             <ul>
@@ -62,5 +62,38 @@
                 </a>
             {% endfor %}
         </ul>
+    </div>
+    <div class="no_flex">
+        <div class="settin_button">
+            <p> Dodaj nowego Kierowce</p>
+            <a href="{% url 'driver_add_view' %}"><button> Dodaj</button></a>
+        </div>
+        <div class="settin_button">
+            <p> Dodaj nowy pojazd </p>
+            <a href="{% url 'car_add_view' %}"><button> Dodaj </button></a>
+        </div>
+        <div class="settin_button">
+            <p> Lista wszystkich kierowców </p>
+            <a href="{% url 'driver_list_view' %}"><button> Sprawdź </button></a>
+        </div>
+        <div class="settin_button">
+            <p> Lista wszystkich samochodów </p>
+            <a href="{% url 'car_list_view' %}"><button> Sprawdź </button></a>
+        </div>
+        <div class="settin_button">
+            <p> Lista wszystkich transportów </p>
+            <a href="{% url 'transport_list_view' %}"><button> Sprawdź </button></a>
+        </div>
+        <div class="settin_button">
+            <p> Zalogowany jako: {{ user }} </p>
+            <a href="{% url 'logout' %}"><button> Wyloguj</button></a>
+        </div>
+        <div class="settin_button">
+            <p> Filtruj zamówienia </p>
+            <a href="{% url 'order_filter' %}"><button> Filtruj</button></a>
+        </div>
+    </div>
+    <div class="no_flex">
+        <p> Tutaj może kiedyś dodam statystyke z mapy jednakże było by to płatne </p>
     </div>
 </div>
