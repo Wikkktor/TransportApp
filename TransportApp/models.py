@@ -17,7 +17,7 @@ class Orders(models.Model):
     delivery_day = models.DateField(default=date.today)
     delivery_hour = models.TimeField(default=datetime.now)
     status = models.IntegerField(choices=DELIVERY_STATUS, default=1)
-    opis = models.TextField(null=True)
+    opis = models.TextField(null=True, blank=True)
     lat = models.CharField(max_length=300, null=True)
     lon = models.CharField(max_length=300, null=True)
 
