@@ -7,15 +7,16 @@ from TransportApp.models import Orders
 
 class OrderFilter(django_filters.FilterSet):
     client = CharFilter(field_name='client', lookup_expr='icontains', label='Nazwa klienta:',
-                        # widgets=forms.TextInput(attrs={'placeholder': 'Nazwa klienta'})
+                        widget=forms.TextInput(attrs={'placeholder': 'Nazwa klienta'})
                         )
     phone_number = CharFilter(field_name='phone_number', lookup_expr='icontains', label='Numer Telefonu:',
-                        # widgets=forms.NumberInput(attrs={'placeholder': 'Numer telefonu'})
+                              widget=forms.NumberInput(attrs={'placeholder': 'Numer telefonu'})
                               )
     delivery_day = DateFilter(field_name='delivery_day', lookup_expr='icontains', label='Data dostarczenia',
-                              # widgets=forms.DateInput(attrs={'placeholder': 'Data dostarczenia'})
+                              widget=forms.DateInput(attrs={'placeholder': 'Data dostarczenia'})
                               )
-    delivery_address = CharFilter(field_name='delivery_address', lookup_expr='icontains', label='Adres dostawy')
+    delivery_address = CharFilter(field_name='delivery_address', lookup_expr='icontains', label='Adres dostawy',
+                                  widget=forms.TextInput(attrs={'placeholder': 'Adres Dostawy'}))
 
     class Meta:
         model = Orders
