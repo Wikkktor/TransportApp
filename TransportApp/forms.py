@@ -1,5 +1,8 @@
 from django import forms
+from django.forms import DateField
+
 from TransportApp.models import Cars, Transport, Orders, Drivers
+from django.contrib.admin.widgets import AdminDateWidget
 
 
 class CarsModelForm(forms.ModelForm):
@@ -31,10 +34,6 @@ class TransportModelForm(forms.ModelForm):
         }
 
 
-class DateInput(forms.DateTimeInput):
-    input_type = "datetime-local"
-
-
 class OrdersModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(OrdersModelForm, self).__init__(*args, **kwargs)
@@ -52,7 +51,8 @@ class OrdersModelForm(forms.ModelForm):
             'opis': 'Dodatkowe info',
         }
         widgets = {
-            'delivery_time': DateInput,
+            'delivery_day': forms.DateInput(attrs={'type': 'date'}),
+            'delivery_hour': forms.TimeInput(attrs={'type': 'time'})
         }
 
 

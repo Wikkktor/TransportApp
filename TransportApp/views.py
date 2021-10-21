@@ -156,7 +156,7 @@ class OrderAddView(LoginRequiredMixin, View):
                               delivery_address=delivery_adres,
                               delivery_day=request.POST['delivery_day'],
                               delivery_hour=request.POST['delivery_hour'],
-                              status=request.POST['status'],
+                              status=1,
                               opis=request.POST['opis'],
                               lat=lat,
                               lon=lon,
