@@ -239,12 +239,6 @@ a {
 .detail_order_buttons a {
     text-align: center;
 }
-.logo {
-    text-align: center;
-}
-.logo img{
-    width: 400px;
-}
 .base_orders ul {
     height: 85%;
     overflow: auto;
