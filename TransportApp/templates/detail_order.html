@@ -75,6 +75,7 @@
         <br>
         <footer><b> Status zamówienia:</b> <br>
             <h3>{{ order.get_status_display }}</h3></footer>
+        <a href="{% url 'order_delete_view' pk=order.id %}"><button class="delete_order"> Usuń Zamówienie </button></a>
     </div>
 </div>
 

@@ -446,3 +446,14 @@ a {
     margin-bottom: 5px;
     width: 90px;
 }
+.delete_order {
+    margin-top: 10px;
+    width: 100px;
+    background-color: darkred;
+    border-color: darkred;
+    color: #fefae0;
+}
+.delete_order:hover {
+    background-color: black;
+    color: white;
+}
