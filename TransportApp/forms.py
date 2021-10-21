@@ -1,9 +1,5 @@
 from django import forms
-from django.core.exceptions import ValidationError
-from django.forms import DateField
-
 from TransportApp.models import Cars, Transport, Orders, Drivers
-from django.contrib.admin.widgets import AdminDateWidget
 
 
 class CarsModelForm(forms.ModelForm):
