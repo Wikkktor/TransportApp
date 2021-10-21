@@ -81,5 +81,5 @@ class Transport(models.Model):
         return reverse('transport_update_view', args=(self.pk,))
 
     def __str__(self):
-        name = f"Samochód: {self.car.name} Kierowca: {self.driver.name} zamówienie: {self.order.name}"
+        name = f"Samochód: {self.car.name} Kierowca: {self.driver.name} zamówienie: {self.order}"
         return name

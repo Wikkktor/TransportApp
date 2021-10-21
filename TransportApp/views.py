@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 import folium
-
+from geopy.exc import GeocoderUnavailable
 from TransportApp.filters import OrderFilter
 from TransportApp.forms import TransportForm, OrdersModelForm
 from TransportApp import forms
@@ -151,16 +151,26 @@ class OrderAddView(LoginRequiredMixin, View):
         geo = get_location_geo(delivery_adres)
         lat = geo[0]
         lon = geo[1]
-        Orders.objects.create(client=request.POST['client'],
-                              phone_number=request.POST['phone_number'],
-                              delivery_address=delivery_adres,
-                              delivery_day=request.POST['delivery_day'],
-                              delivery_hour=request.POST['delivery_hour'],
-                              status=1,
-                              opis=request.POST['opis'],
-                              lat=lat,
-                              lon=lon,
-                              )
+        try:
+            Orders.objects.create(client=request.POST['client'],
+                                  phone_number=request.POST['phone_number'],
+                                  delivery_address=delivery_adres,
+                                  delivery_day=request.POST['delivery_day'],
+                                  delivery_hour=request.POST['delivery_hour'],
+                                  status=1,
+                                  opis=request.POST['opis'],
+                                  lat=lat,
+                                  lon=lon,
+                                  )
+        except TimeoutError or GeocoderUnavailable:
+            Orders.objects.create(client=request.POST['client'],
+                                  phone_number=request.POST['phone_number'],
+                                  delivery_address=delivery_adres,
+                                  delivery_day=request.POST['delivery_day'],
+                                  delivery_hour=request.POST['delivery_hour'],
+                                  status=1,
+                                  opis=request.POST['opis'],
+                                  )
         return redirect('/order/list')
 
 
@@ -168,8 +178,8 @@ class OrderListView(LoginRequiredMixin, View):
     def get(self, request):
         not_done_orders = Orders.objects.all().filter(status=1).order_by('delivery_day', 'delivery_hour')
         in_process_orders = Orders.objects.all().filter(status=2).order_by('delivery_day', 'delivery_hour')
-        done_orders = Orders.objects.all().filter(status=3).order_by('delivery_day', 'delivery_hour')
-        cancel_orders = Orders.objects.all().filter(status=4).order_by('delivery_day', 'delivery_hour')
+        done_orders = Orders.objects.all().filter(status=3).order_by('-delivery_day', 'delivery_hour')
+        cancel_orders = Orders.objects.all().filter(status=4).order_by('-delivery_day', 'delivery_hour')
         context = {'done_orders': done_orders, 'in_process_orders': in_process_orders,
                    'not_done_orders': not_done_orders, 'cancel_orders': cancel_orders}
         return render(request, 'orders_list_view.html', context)
