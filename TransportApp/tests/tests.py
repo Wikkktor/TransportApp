@@ -478,3 +478,26 @@ def test_transport_modify_post_logged(transports, login, cars, drivers, orders):
     }
     response = client.post(reverse('transport_update_view', kwargs={'pk': transports[0].pk}), data=a)
     assert response.status_code == 302
+
+
+@pytest.mark.django_db
+def test_settings_get_not_logged():
+    client = Client()
+    response = client.get(reverse('settings'))
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_settings_get_logged(login):
+    client = Client()
+    client.force_login(login)
+    response = client.get(reverse('settings'))
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_settings_empty_post_logged(login):
+    client = Client()
+    client.force_login(login)
+    response = client.post(reverse('settings'))
+    assert response.status_code == 405
