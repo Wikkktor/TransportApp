@@ -28,8 +28,8 @@
         <p>Numer Telefonu:</p>
         <h2>{{ order.phone_number }}</h2>
         <p>Termin dostawy:</p>
-        <h2>{{ order.delivery_day }}</h2>
-        <h2>{{ order.delivery_hour }}</h2>
+        <h2>{{ order.delivery_day|date:"d/m/Y" }}</h2>
+        <h2>{{ order.delivery_hour|time:'H:i' }}</h2>
         <p>Dodatkowe informacje:</p>
         <h4>{{ order.opis }}</h4>
         <p>Status zamówienia:</p>
