@@ -49,7 +49,7 @@ class OrdersModelForm(forms.ModelForm):
         }
         widgets = {
             'delivery_day': forms.DateInput(attrs={'type': 'date'}),
-            'delivery_hour': forms.TimeInput(attrs={'type': 'time'})
+            'delivery_hour': forms.TimeInput(attrs={'type': 'time', 'value': '15:10'})
         }
 
 

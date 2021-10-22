@@ -15,7 +15,7 @@ class Orders(models.Model):
     phone_number = models.IntegerField()
     delivery_address = models.CharField(max_length=300)
     delivery_day = models.DateField(default=date.today)
-    delivery_hour = models.TimeField(default=datetime.now)
+    delivery_hour = models.TimeField()
     status = models.IntegerField(choices=DELIVERY_STATUS, default=1)
     opis = models.TextField(null=True, blank=True)
     lat = models.CharField(max_length=300, null=True)
