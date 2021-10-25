@@ -129,7 +129,7 @@ class TransportUpdateView(LoginRequiredMixin, UpdateView):
     # Modify view
     model = Transport
     template_name = 'form.html'
-    fields = '__all__'
+    fields = ('car', 'driver',)
     success_url = '/'
 
 
@@ -207,20 +207,26 @@ class DetailOrderView(LoginRequiredMixin, View):
             icon=folium.Icon(color='blue')
         ).add_to(detail_map)
         form = TransportForm()
-        return render(
-            request,
-            'detail_order.html',
-            {'order': order, 'my_map': detail_map._repr_html_(), 'form': form})
+        try:
+            transport = Transport.objects.get(order_id=pk)
+            return render(
+                request,
+                'detail_order.html',
+                {'order': order, 'my_map': detail_map._repr_html_(), 'form': form, 'transport': transport})
+        except ObjectDoesNotExist:
+            return render(
+                request,
+                'detail_order.html',
+                {'order': order, 'my_map': detail_map._repr_html_(), 'form': form})
 
     def post(self, request, pk):
         driver = Drivers.objects.get(id=request.POST['driver'])
         car = Cars.objects.get(id=request.POST['car'])
         order = Orders.objects.get(id=pk)
-        t = Transport.objects.create(driver=driver, car=car)
-        t.order.add(order)
+        Transport.objects.create(driver=driver, car=car, order_id=pk)
         order.status = 2
         order.save()
-        return redirect("/")
+        return redirect('order_detail_view', pk)
 
 
 class ChangeOrderStatusTransportDefined(View):

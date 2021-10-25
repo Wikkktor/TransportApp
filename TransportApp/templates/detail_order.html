@@ -41,15 +41,24 @@
         </div>
     {% endif %}
     <div class="transport_form">
-        <h3> Dodaj transport do zamówienia: </h3><br>
+        {% if transport.driver and transport.car %}
+            <h3> Zdefiniowany Transport:</h3>
+            <ul class="transport_defined">
+                <li> Samochód: <b>{{ transport.car }}</b></li>
+                <li> Kierowca: <b>{{ transport.driver }}</b></li>
+                <a href="{% url 'transport_update_view' pk=transport.id %}"><button>Edytuj</button></a>
+            </ul>
+
+            {% else %}
+            <h3> Dodaj transport do zamówienia: </h3><br>
         <form method="post">
             <br>
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
             <input class='order_detail_transport' type="submit" value="Dodaj Transport">
-
         </form>
+        {% endif %}
         <a href="{{ order.get_modify_url }}">
             <button class="ord_det_edit">Edytuj zamówienie</button>
         </a>
@@ -57,7 +66,7 @@
             <h3>Zmień Status</h3>
             <div>
                 <a href="{% url 'TransportDefined' pk=order.id %}">
-                    <button>Transport</button>
+                    <button>Transport Zdefiniowany</button>
                 </a>
                 <a href="{% url 'DoneOrder' pk=order.id %}">
                     <button>Zrealizowane</button>
@@ -77,6 +86,8 @@
             <h3>{{ order.get_status_display }}</h3></footer>
         <a href="{% url 'order_delete_view' pk=order.id %}"><button class="delete_order"> Usuń Zamówienie </button></a>
     </div>
+</div>
+<div>
 </div>
 </body>
 </html>

@@ -480,3 +480,13 @@ a {
     height: 30px;
     width: 800px;
 }
+.transport_defined {
+    margin-right: 20px;
+    font-size: 20px;
+}
+.transport_defined li {
+    border-radius: 5px;
+}
+.transport_defined li:hover {
+    background-color: #219ebc;
+}
