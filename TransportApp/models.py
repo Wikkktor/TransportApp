@@ -71,7 +71,7 @@ class Cars(models.Model):
 class Transport(models.Model):
     car = models.ForeignKey(Cars, on_delete=models.CASCADE)
     driver = models.ForeignKey(Drivers, on_delete=models.CASCADE)
-    order = models.ManyToManyField(Orders)
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse('transport_list_view')
