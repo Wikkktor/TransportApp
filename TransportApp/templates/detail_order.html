@@ -28,12 +28,12 @@
         <p>Numer Telefonu:</p>
         <h2>{{ order.phone_number }}</h2>
         <p>Termin dostawy:</p>
-        <h2>{{ order.delivery_day|date:"d/m/Y" }}</h2>
-        <h2>{{ order.delivery_hour|time:'H:i' }}</h2>
+        <h2>{{ order.delivery_day|date:"d/m/Y" }} {{ order.delivery_hour|time:'H:i' }}</h2>
         <p>Dodatkowe informacje:</p>
         <h4>{{ order.opis }}</h4>
-        <p>Status zamówienia:</p>
-        <h4>{{ order.get_status_display }}</h4>
+        <p>Dane od Google:</p>
+        <h4>Dystans: {{ order.distance }}</h4>
+        <h4>Oszacowany czas podróży samochodem: <br>{{ order.time }}</h4>
     </div>
     {% if my_map %}
         <div class="map">
@@ -78,6 +78,5 @@
         <a href="{% url 'order_delete_view' pk=order.id %}"><button class="delete_order"> Usuń Zamówienie </button></a>
     </div>
 </div>
-
 </body>
 </html>

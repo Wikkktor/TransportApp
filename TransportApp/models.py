@@ -20,6 +20,8 @@ class Orders(models.Model):
     opis = models.TextField(null=True, blank=True)
     lat = models.CharField(max_length=300, null=True)
     lon = models.CharField(max_length=300, null=True)
+    distance = models.CharField(max_length=300, null=True)
+    time = models.CharField(max_length=300, null=True)
 
     def get_absolute_url(self):
         return reverse('order_detail_view', args=(self.pk,))

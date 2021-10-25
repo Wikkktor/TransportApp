@@ -2,11 +2,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 import folium
-from geopy.exc import GeocoderUnavailable
+from TransportApp.destination import get_distance_time_values
 from TransportApp.filters import OrderFilter
 from TransportApp.forms import TransportForm, OrdersModelForm
 from TransportApp import forms
-from TransportApp.geocode import get_location_geo
+from TransportApp.geocode import get_location_lat_long
 from TransportApp.models import Cars, Transport, Orders, Drivers
 from django.views import View
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView, DetailView
@@ -148,29 +148,20 @@ class OrderAddView(LoginRequiredMixin, View):
 
     def post(self, request):
         delivery_adres = request.POST['delivery_address']
-        geo = get_location_geo(delivery_adres)
-        lat = geo[0]
-        lon = geo[1]
-        try:
-            Orders.objects.create(client=request.POST['client'],
-                                  phone_number=request.POST['phone_number'],
-                                  delivery_address=delivery_adres,
-                                  delivery_day=request.POST['delivery_day'],
-                                  delivery_hour=request.POST['delivery_hour'],
-                                  status=1,
-                                  opis=request.POST['opis'],
-                                  lat=lat,
-                                  lon=lon,
-                                  )
-        except TimeoutError or GeocoderUnavailable:
-            Orders.objects.create(client=request.POST['client'],
-                                  phone_number=request.POST['phone_number'],
-                                  delivery_address=delivery_adres,
-                                  delivery_day=request.POST['delivery_day'],
-                                  delivery_hour=request.POST['delivery_hour'],
-                                  status=1,
-                                  opis=request.POST['opis'],
-                                  )
+        geo = get_location_lat_long(delivery_adres)
+        time_dist = get_distance_time_values(delivery_adres, "Kabex Nadarzyn")
+        Orders.objects.create(client=request.POST['client'],
+                              phone_number=request.POST['phone_number'],
+                              delivery_address=delivery_adres,
+                              delivery_day=request.POST['delivery_day'],
+                              delivery_hour=request.POST['delivery_hour'],
+                              status=1,
+                              opis=request.POST['opis'],
+                              lat=geo[0],
+                              lon=geo[1],
+                              distance=time_dist[0],
+                              time=time_dist[1]
+                              )
         return redirect('/order/list')
 
 

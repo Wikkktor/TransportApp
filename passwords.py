@@ -11,3 +11,5 @@ database = {
         'PASSWORD': 'coderslab',
     }
 }
+
+API_KEY = 'AIzaSyDYMnqDtuS-U18hJnhmyBwziKWPkEHbbag'

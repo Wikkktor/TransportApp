@@ -446,7 +446,9 @@ def test_order_modify_post_logged(orders, login):
         'status': 1,
         'opis': 'Test',
         'lat': 53.222,
-        'lon': 20.11
+        'lon': 20.11,
+        'distance': '20km',
+        'time': '20min'
     }
     response = client.post(reverse('order_update_view', kwargs={'pk': orders[0].pk}), data=a)
     assert response.status_code == 302
