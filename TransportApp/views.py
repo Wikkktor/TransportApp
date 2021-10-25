@@ -2,9 +2,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 import folium
+from django.urls import reverse
+
 from TransportApp.destination import get_distance_time_values
 from TransportApp.filters import OrderFilter
-from TransportApp.forms import TransportForm, OrdersModelForm
+from TransportApp.forms import TransportForm, OrdersModelForm, TransportUpdateForm
 from TransportApp import forms
 from TransportApp.geocode import get_location_lat_long
 from TransportApp.models import Cars, Transport, Orders, Drivers
@@ -125,12 +127,18 @@ class TransportDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/'
 
 
-class TransportUpdateView(LoginRequiredMixin, UpdateView):
+class TransportUpdateView(LoginRequiredMixin, View):
     # Modify view
-    model = Transport
-    template_name = 'form.html'
-    fields = ('car', 'driver',)
-    success_url = '/'
+    def get(self, request, pk):
+        form = TransportUpdateForm()
+        return render(request, 'form.html', {'form': form})
+
+    def post(self, request, pk):
+        transport = Transport.objects.get(id=pk)
+        transport.car = Cars.objects.get(id=request.POST['car'])
+        transport.driver = Drivers.objects.get(id=request.POST['driver'])
+        transport.save()
+        return redirect('order_detail_view', transport.order_id)
 
 
 class TransportDetailView(LoginRequiredMixin, DetailView):

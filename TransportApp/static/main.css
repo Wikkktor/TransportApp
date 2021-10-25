@@ -195,7 +195,7 @@ a {
 .table select{
     width: 400px;
 }
-.table input, textarea{
+.table input, textarea, select{
     background-color: whitesmoke;
     color: black;
     border-color: #0d1b2a;
@@ -489,4 +489,14 @@ a {
 }
 .transport_defined li:hover {
     background-color: #219ebc;
+}
+.button_edit {
+    width: 70px;
+    height: 30px;
+    background-color: #0d1b2a;
+    color: white;
+    border-color: #0d1b2a;
+}
+.button_edit:hover {
+    background-color: #22223b;
 }

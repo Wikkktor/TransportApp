@@ -46,7 +46,7 @@
             <ul class="transport_defined">
                 <li> Samochód: <b>{{ transport.car }}</b></li>
                 <li> Kierowca: <b>{{ transport.driver }}</b></li>
-                <a href="{% url 'transport_update_view' pk=transport.id %}"><button>Edytuj</button></a>
+                <a href="{% url 'transport_update_view' pk=transport.id %}"><button class="button_edit">Edytuj</button></a>
             </ul>
 
             {% else %}

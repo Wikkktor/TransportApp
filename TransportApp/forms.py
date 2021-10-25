@@ -20,6 +20,16 @@ class DriversModelForm(forms.ModelForm):
         }
 
 
+class TransportUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Transport
+        fields = ('car', 'driver')
+        labels = {
+            'car': 'Samochód',
+            'driver': 'Kierowca',
+        }
+
+
 class TransportModelForm(forms.ModelForm):
     class Meta:
         model = Transport
