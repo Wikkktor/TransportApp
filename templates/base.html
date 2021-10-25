@@ -21,12 +21,11 @@
 </div>
 {% block base %}
     <div class="coint">
-    {% if orders %}
-        <div class="base_orders">
-            <h3>Nie zrealizowane zamówienia:</h3>
-            <ul>
+    <div class="base_orders">
+        <h3>Nie zrealizowane zamówienia:</h3>
+        <ul>
+            {% if orders %}
                 {% for order in orders %}
-
                     <a href="{{ order.get_absolute_url }}">
                         <li class="base_view_orders"> ID {{ order.id }} <b>{{ order.client }}
                         </b> Telefon: {{ order.phone_number }}<br>
@@ -35,9 +34,9 @@
                     </a>
 
                 {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+            {% endif %}
+        </ul>
+    </div>
     {% if my_map %}
         <div class="map">
             {{ my_map|safe }}

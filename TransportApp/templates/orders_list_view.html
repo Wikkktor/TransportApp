@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block content %}
+{% block base %}
+    <div class="button_list_view">
     <a href="{% url 'order_filter' %}">
         <button class="filter_link"> Wyszukaj zamówienie</button>
     </a>
+    </div>
     <div class="coint">
         <div class="not_done_orders">
             <h2 class="list_orders_h2">Nowe zamówienia</h2>

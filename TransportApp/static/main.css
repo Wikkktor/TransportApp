@@ -42,6 +42,9 @@ body {
 .coint{
     display: flex;
 }
+.coint1{
+    display: flex;
+}
 .list {
     text-align: center;
 }
@@ -183,10 +186,11 @@ a {
 .table {
     background-color: #219ebc;
     border-radius: 20px;
-    margin: auto;
+    margin: 20px auto;
     padding: 20px;
     width: 700px;
     text-align: center;
+    font-size: 20px;
 }
 .table select{
     width: 400px;
@@ -196,6 +200,7 @@ a {
     color: black;
     border-color: #0d1b2a;
     width: 400px;
+    font-size: 20px;
 }
 .base_orders {
     margin-left: -45px;
@@ -312,6 +317,7 @@ a {
 }
 .settings_coint {
     display: flex;
+    justify-content: center;
 }
 .settings_coint div {
     margin: 10px;
@@ -416,7 +422,8 @@ a {
 }
 .filter_link {
     font-size: 25px;
-    margin: 5px;
+    margin: 5px auto;
+    text-align: center;
     background-color: #3498db;
     border-color: #3498db;
     border-radius: 10px;
@@ -453,4 +460,23 @@ a {
 }
 .delete_under_form{
     color: white;
+}
+.button_list_view {
+    margin-top: 10px;
+    text-align: center;
+}
+.list_view {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 60%;
+}
+.list_view li {
+    background-color: #219ebc;
+    border-radius: 10px;
+    margin: 10px auto;
+    text-align: center;
+    list-style-type: none;
+    font-size: 18px;
+    height: 30px;
+    width: 800px;
 }

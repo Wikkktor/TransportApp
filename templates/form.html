@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 <div class = 'list'>
-{% block content %}
+{% block base %}
     <table class="table">
         <form id='my_form' method="post">
             {% csrf_token %}
@@ -8,6 +8,8 @@
             {{ form.as_table }}
         </form>
     </table>
+    <div class="button_list_view">
     <button class='button' form="my_form"> Zapisz</button>
+    </div>
 {% endblock %}
 </div>
