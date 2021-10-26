@@ -220,7 +220,7 @@ a {
     color: black;
 }
 .list_item {
-    width: 600px;
+    width: 1000px;
     border-radius: 10px;
 }
 .ord_det_edit {
@@ -478,7 +478,7 @@ a {
     list-style-type: none;
     font-size: 18px;
     height: 30px;
-    width: 800px;
+    width: 1000px;
 }
 .transport_defined {
     margin-right: 20px;
