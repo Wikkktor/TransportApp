@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
-<div class = 'list'>
 {% block base %}
-    <table class="table">
+    <div class="form_view">
         <form id='my_form' method="post">
             {% csrf_token %}
             {{ form.media }}
-            {{ form.as_table }}
+            {{ form.as_p }}
         </form>
-    </table>
+    </div>
     <div class="button_list_view">
     <button class='button' form="my_form"> Zapisz</button>
     </div>
 {% endblock %}
-</div>
