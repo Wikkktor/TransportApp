@@ -1,23 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/main.css">
-    <title>Usuń zamówienie</title>
-</head>
-<body>
-<div class="mainMenu">
-    <ul>
-        <li><a href="{% url 'base' %}"> Strona Główna </a></li>
-        <li><a href="{% url 'order_list_view' %}">Lista Zamówień</a></li>
-        <li><a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a></li>
-        <li><a href="{% url 'order_filter' %}"> Filtruj zamówienia </a></li>
-        <li><a href="{% url 'settings' %}"> Ustawienia </a></li>
-    </ul>
-</div>
-<div class = 'list'>
-{% block content %}
+{% extends 'base.html' %}
+{% block base %}
     <table class="table">
         <form id='my_form' method="post">
             {% csrf_token %}
@@ -25,12 +7,11 @@
             {{ form.as_table }}
         </form>
     </table>
-    <button class='button' form="my_form"> Usuń </button>
-    <div class="delete_under_form">
+    <div style="text-align: center">
+     <button style='text-align: center; width: 10vh; font-size: 20px; margin-bottom: 5vh;' class='btn btn-danger' form="my_form"> Usuń </button>
+    </div>
+    <div style="text-align: center; color: white">
     <p> Usuwasz zamówienie:</p>
     <h3>{{ orders.id }} {{ orders }}</h3>
     </div>
 {% endblock %}
-</div>
-</body>
-</html>
