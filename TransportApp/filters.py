@@ -13,7 +13,7 @@ class OrderFilter(django_filters.FilterSet):
                               widget=forms.NumberInput(attrs={'placeholder': 'Numer telefonu'})
                               )
     delivery_day = DateFilter(field_name='delivery_day', lookup_expr='icontains', label='Data dostarczenia',
-                              widget=forms.DateInput(attrs={'placeholder': 'Data dostarczenia'})
+                              widget=forms.DateInput(attrs={'placeholder': 'Data dostarczenia', 'type': 'date'})
                               )
     delivery_address = CharFilter(field_name='delivery_address', lookup_expr='icontains', label='Adres dostawy',
                                   widget=forms.TextInput(attrs={'placeholder': 'Adres Dostawy'}))
