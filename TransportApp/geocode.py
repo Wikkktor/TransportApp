@@ -1,11 +1,12 @@
+import os
 from urllib.parse import urlencode
-from passwords import API_KEY
+from password import API_KEY
 import requests
 
 
 def get_location_lat_long(adress, data_type='json'):
     endpoint = f"https://maps.googleapis.com/maps/api/geocode/{data_type}"
-    params = {'address': adress, "key": API_KEY}
+    params = {'address': adress, "key": os.environ.get('API_KEY')}
     url_params = urlencode(params)
     url = f"{endpoint}?{url_params}"
     r = requests.get(url)
