@@ -22,19 +22,24 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-content-center" style="margin: auto">
                 <li class="nav-item">
-                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link active" aria-current="page" href="{% url 'base' %}">Home</a>
+                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link active"
+                       aria-current="page" href="{% url 'base' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link" href="{% url 'order_list_view' %}">Orders List</a>
+                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link"
+                       href="{% url 'order_list_view' %}">Orders List</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link" href="{% url 'order_add_view' %}">Add order</a>
+                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link"
+                       href="{% url 'order_add_view' %}">Add order</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link" href="{% url 'order_filter' %}">orders filter</a>
+                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link"
+                       href="{% url 'order_filter' %}">orders filter</a>
                 </li>
                 <li class="nav-item">
-                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link" href="{% url 'settings' %}">Settings panel</a>
+                    <a style="color: white; font-size: 25px; margin-right: 10px;" class="nav-link"
+                       href="{% url 'settings' %}">Settings panel</a>
                 </li>
             </ul>
             <span style='color: white' class="navbar-text">
@@ -51,12 +56,12 @@
             {% if orders %}
                 {% for order in orders %}
                     <a style='text-decoration: none; font-size: large;' href="{{ order.get_absolute_url }}">
-                        <li style='background-color: #4ac1f7; margin-bottom: 1vh; padding-left: 2vh; ' class="base_view_orders"> ID {{ order.id }} <b>{{ order.client }}
+                        <li style='background-color: #4ac1f7; margin-bottom: 1vh; padding-left: 2vh; '
+                            class="base_view_orders"> ID {{ order.id }} <b>{{ order.client }}
                         </b> Telefon: {{ order.phone_number }}<br>
                             {{ order.delivery_address }} &nbsp <b>{{ order.delivery_day|date:"d/m/Y" }}
                                 {{ order.delivery_hour|time:'H:i' }}</b></li>
                     </a>
-
                 {% endfor %}
             {% endif %}
         </ul>
@@ -67,8 +72,8 @@
         </div>
     {% endif %}
 {% endblock %}
-    {% block content %}
-    {% endblock %}
+{#    {% block content %}#}
+{#    {% endblock %}#}
 </div>
 </body>
 </html>

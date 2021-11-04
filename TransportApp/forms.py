@@ -49,17 +49,13 @@ class OrdersModelForm(forms.ModelForm):
     class Meta:
         model = Orders
         fields = ('client', 'phone_number', 'delivery_address', 'delivery_day', 'delivery_hour', 'opis')
-        labels = {
-            'client': 'Klient',
-            'phone_number': 'Numer Telefonu',
-            'delivery_address': 'Adres dostawy',
-            'delivery_day': 'Dzień dostawy',
-            'delivery_hour': 'Godzina dostawy',
-            'opis': 'Dodatkowe info',
-        }
         widgets = {
-            'delivery_day': forms.DateInput(attrs={'type': 'date'}),
-            'delivery_hour': forms.TimeInput(attrs={'type': 'time', 'value': '15:10'})
+            'delivery_day': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'delivery_hour': forms.TimeInput(attrs={'type': 'time', 'value': '15:00', 'class': 'form-control'}),
+            'client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Client name'}),
+            'opis': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Additional information'}),
+            'phone_number': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '555444333'}),
+            'delivery_address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Delivery address'}),
         }
 
 

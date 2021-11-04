@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block base %}
-    <div class="form_view">
+    <div class="container">
+    <div class="align-content-center">
+    <div class="form-control-sm" style="max-width: 500px; text-align: center">
         <form id='my_form' method="post">
             {% csrf_token %}
             {{ form.media }}
             {{ form.as_p }}
+            <button class='btn btn-secondary'> Zapisz</button>
         </form>
     </div>
-    <div class="button_list_view">
-    <button class='button' form="my_form"> Zapisz</button>
+    </div>
     </div>
 {% endblock %}

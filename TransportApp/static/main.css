@@ -7,7 +7,14 @@
   background-color: #30343f;
   cursor: pointer;
 }
-
+label {
+    color: white;
+    font-size: 19px;
+}
+input {
+    color: black;
+    font-size: 20px !important;
+}
 .mainMenu li a {
   display: block;
   justify-content: center;
