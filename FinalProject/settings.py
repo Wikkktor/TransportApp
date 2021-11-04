@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'TransportApp.apps.TransportConfig',
-    'register'
+    'register',
+    'whitenoise.runserver_nostatic'
 ]
 
 MIDDLEWARE = [
