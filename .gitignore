@@ -4,4 +4,5 @@ venv/
 *.pyc
 djangomaps/
 .pytest_cache/
-passwords.py
+password.py
+./password.py
