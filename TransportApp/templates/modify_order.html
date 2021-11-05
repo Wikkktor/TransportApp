@@ -1,32 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/main.css">
-    <title>Edytuj Zamówienie</title>
-</head>
-<body>
-<div class="mainMenu">
-    <ul>
-        <li><a href="{% url 'base' %}"> Strona Główna </a></li>
-        <li><a href="{% url 'order_list_view' %}">Lista Zamówień</a></li>
-        <li><a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a></li>
-        <li><a href="{% url 'order_filter' %}"> Filtruj zamówienia </a></li>
-        <li><a href="{% url 'settings' %}"> Ustawienia </a></li>
-    </ul>
-</div>
-<div class = 'list'>
-{% block content %}
-    <table class="table">
+{% extends 'base.html' %}
+{% block base %}
+    <div class="container">
+    <div class="align-content-center">
+    <div class="form-control-sm" style="max-width: 500px; text-align: left">
         <form id='my_form' method="post">
             {% csrf_token %}
             {{ form.media }}
-            {{ form.as_table }}
+            {{ form.as_p }}
         </form>
-    </table>
-    <button class='button' form="my_form"> Edytuj zamówienie</button>
+    </div>
+        <button style="text-align: center" class='btn btn-primary'> Edytuj</button>
+    </div>
+    </div>
 {% endblock %}
-</div>
-</body>
-</html>
