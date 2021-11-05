@@ -1,93 +1,97 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/static/main.css">
-    <title>Szczegóły zamówienia</title>
-</head>
-<body>
-<div class="mainMenu">
-    <ul>
-        <li><a href="{% url 'base' %}"> Strona Główna </a></li>
-        <li><a href="{% url 'order_list_view' %}">Lista Zamówień</a></li>
-        <li><a href="{% url 'order_add_view' %}"> Dodaj zamówienie </a></li>
-        <li><a href="{% url 'order_filter' %}"> Filtruj zamówienia </a></li>
-        <li><a href="{% url 'settings' %}"> Ustawienia </a></li>
-    </ul>
-</div>
-<div class="coint">
-    <div class="detail_order_coint">
-        <p>Imię i nazwisko:</p>
-        <h1>{{ order.client }}</h1>
-        <p>Adres Dostawy:</p>
-        <h2>{{ order.delivery_address }}</h2>
-        <p>Numer Telefonu:</p>
-        <h2>{{ order.phone_number }}</h2>
-        <p>Termin dostawy:</p>
-        <h2>{{ order.delivery_day|date:"d/m/Y" }} {{ order.delivery_hour|time:'H:i' }}</h2>
-        <p>Dodatkowe informacje:</p>
-        <h4>{{ order.opis }}</h4>
-        <p>Dane od Google:</p>
-        <h4>Dystans: {{ order.distance }}</h4>
-        <h4>Oszacowany czas podróży samochodem: <br>{{ order.time }}</h4>
-    </div>
-    {% if my_map %}
-        <div class="map">
-            {{ my_map|safe }}
-        </div>
-    {% endif %}
-    <div class="transport_form">
-        {% if transport.driver and transport.car %}
-            <h3> Zdefiniowany Transport:</h3>
-            <ul class="transport_defined">
-                <li> Samochód: <b>{{ transport.car }}</b></li>
-                <li> Kierowca: <b>{{ transport.driver }}</b></li>
-                <a href="{% url 'transport_update_view' pk=transport.id %}"><button class="button_edit">Edytuj</button></a>
-            </ul>
+{% extends 'base.html' %}
+{% block base %}
+    <div class="container-fluid">
+        <div class="row" style="padding-left: 0!important;">
+            <div style='background-color: #4ac1f7; text-align: center' class="col-sm-2">
+                <p>Imię i nazwisko:</p>
+                <h1>{{ order.client }}</h1>
+                <p>Adres Dostawy:</p>
+                <h2>{{ order.delivery_address }}</h2>
+                <p>Numer Telefonu:</p>
+                <h2>{{ order.phone_number }}</h2>
+                <p>Termin dostawy:</p>
+                <h2>{{ order.delivery_day|date:"d/m/Y" }} {{ order.delivery_hour|time:'H:i' }}</h2>
+                <p>Dodatkowe informacje:</p>
+                <h4>{{ order.opis }}</h4>
+                <p>Dane od Google:</p>
+                <h4>Dystans: {{ order.distance }}</h4>
+                <h4>Oszacowany czas podróży samochodem: <br>{{ order.time }}</h4>
+            </div>
+            <div class="col-sm-7" style="padding-left: 0; padding-right: 0;">
+                {% if my_map %}
+                    <div class="map">
+                        {{ my_map|safe }}
+                    </div>
+                {% endif %}
+            </div>
+            <div style="background-color: #4ac1f7; text-align: center; padding: 0; margin-left: 0"
+                 class="col-sm-3">
+                {% if transport.driver and transport.car %}
+                    <h3> Zdefiniowany Transport:</h3>
+                    <ul class="transport_defined" style="list-style-type: none;">
+                        <li> Samochód: <b>{{ transport.car }}</b></li>
+                        <li> Kierowca: <b>{{ transport.driver }}</b></li>
+                        <a href="{% url 'transport_update_view' pk=transport.id %}">
+                            <button class="btn btn-dark">Edytuj</button>
+                        </a>
+                    </ul>
 
-            {% else %}
-            <h3> Dodaj transport do zamówienia: </h3><br>
-        <form method="post">
-            <br>
-            {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <input class='order_detail_transport' type="submit" value="Dodaj Transport">
-        </form>
-        {% endif %}
-        <a href="{{ order.get_modify_url }}">
-            <button class="ord_det_edit">Edytuj zamówienie</button>
-        </a>
-        <div class="detail_order_buttons">
-            <h3>Zmień Status</h3>
-            <div>
-                <a href="{% url 'TransportDefined' pk=order.id %}">
-                    <button>Transport Zdefiniowany</button>
+                {% else %}
+                    <h3> Dodaj transport do zamówienia: </h3><br>
+                    <form style='text-align: center' method="post">
+                        <br>
+                        {% csrf_token %}
+                        {{ form.media }}
+                        {{ form.as_p }}
+                        <button style="text-align: center" class='btn btn-dark' type="submit"> Add Transport</button>
+                    </form>
+                {% endif %}
+                <h3>Zmień Status</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col" style="width: 50%">
+                            <a href="{% url 'TransportDefined' pk=order.id %}">
+                                <button style="width: 100%; height: 100%" class="btn btn-primary">Transport Zdefiniowany</button>
+                            </a>
+                        </div>
+                        <div class="col" style="width: 50%">
+                            <a href="{% url 'DoneOrder' pk=order.id %}">
+                                <button style="width: 100%; height: 100%" class="btn btn-secondary">Zrealizowane</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 1vh;">
+                        <div class="col">
+                            <a href="{% url 'CancelOrder' pk=order.id %}">
+                                <button style="width: 100%; height: 100%" class="btn btn-dark">Anulowane</button>
+                            </a>
+                        </div>
+                        <div class="col" style="width: 50%; align-content: stretch">
+                            <a href="{% url 'NewOrder' pk=order.id %}">
+                                <button style="width: 100%; height: 100%" class="btn btn-success">Nowe</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" style="margin-top: 2vh">
+                    <div class="row">
+                    <b> Status zamówienia:</b><br>
+                        <h3>{{ order.get_status_display }}</h3>
+                    </div>
+                    <div class="row" style="margin-top: 2vh;">
+                        <a href="{{ order.get_modify_url }}">
+                    <button class="btn btn-dark">Edytuj zamówienie</button>
                 </a>
-                <a href="{% url 'DoneOrder' pk=order.id %}">
-                    <button>Zrealizowane</button>
+                    </div>
+            <div class="row" style="margin-top: 2vh;">
+                <a href="{% url 'order_delete_view' pk=order.id %}">
+                    <button class="btn btn-danger"> Usuń Zamówienie</button>
                 </a>
+                </div>
             </div>
-            <div style = "margin-top: 5px">
-                <a href="{% url 'CancelOrder' pk=order.id %}">
-                    <button>Anulowane</button>
-                </a>
-                <a href="{% url 'NewOrder' pk=order.id %}">
-                    <button>Nowe</button>
-                </a>
             </div>
         </div>
-        <br>
-        <footer><b> Status zamówienia:</b> <br>
-            <h3>{{ order.get_status_display }}</h3></footer>
-        <a href="{% url 'order_delete_view' pk=order.id %}"><button class="delete_order"> Usuń Zamówienie </button></a>
+        <div>
+        </div>
     </div>
-</div>
-<div>
-</div>
-</body>
-</html>
+{% endblock %}
