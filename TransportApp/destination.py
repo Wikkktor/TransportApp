@@ -1,5 +1,5 @@
 import requests
-from password import API_KEY
+from passwords import API_KEY
 
 
 def get_distance_time_values(origin, destination):
