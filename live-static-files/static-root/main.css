@@ -118,7 +118,7 @@ a {
     width: 25%;
 }
 .login {
-    width: 300px;
+    min-width: 40vh;
     padding: 40px;
     position: absolute;
     top: 50%;
@@ -126,16 +126,17 @@ a {
     transform: translate(-50%, -50%);
     background: #191919;
     text-align: center;
-    border-radius: 20%;
+    border-radius: 10%;
 }
 .login input {
+    width: 90%;
     background: none;
     display: block;
     margin: 20px auto;
     text-align: center;
     border: 2px solid #3498db;
-    padding: 14px 10px;
-    width: 200px;
+    padding: 25px 10px;
+    min-width: 60%;
     outline: none;
     color: white;
     border-radius: 24px;
@@ -154,24 +155,11 @@ a {
     color: white;
     text-transform: uppercase;
     font-weight: 500;
+    font-size: 100px;
 }
 .login input:focus{
     width: 280px;
     border-color: #2ecc71;
-}
-.login input[type='submit']{
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid #2ecc71;
-    padding: 10px 30px;
-    outline: none;
-    color: white;
-    border-radius: 24px;
-    transition: 0.25s;
-    cursor: pointer;
-    width: 100px;
 }
 .login input[type='submit']:hover{
     background: #2ecc71;
