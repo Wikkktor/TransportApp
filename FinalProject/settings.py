@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import django_heroku
 from pathlib import Path
 import dj_database_url
 import password
@@ -27,7 +28,7 @@ SECRET_KEY = password.SECRET_KEY
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['smarttransport.herokuapp.com']
 
 # Application definition
 
@@ -80,7 +81,17 @@ WSGI_APPLICATION = 'FinalProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = password.database
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dds7uoi8uo6qi2',
+        'USER': 'mhwjyjgsscamim',
+        'PASSWORD': 'd9bf045d297dafcb85fd8cc1428123c6d334593ea2386dbd3ba3cfab0e1beaaf',
+        'HOST': 'ec2-54-73-110-26.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
+
+    }
+}
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
