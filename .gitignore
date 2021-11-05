@@ -6,3 +6,5 @@ djangomaps/
 .pytest_cache/
 password.py
 ./password.py
+password/
+.password/

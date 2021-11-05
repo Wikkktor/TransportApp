@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block base %}
     <div class="container-fluid">
-        <div class="row" style="padding-left: 0!important;">
+        <div class="row" style="padding: 0; margin-right: 0; margin-left: 0;">
             <div style='background-color: #4ac1f7; text-align: center' class="col-sm-2">
                 <p>Imię i nazwisko:</p>
                 <h1>{{ order.client }}</h1>
@@ -24,7 +24,7 @@
                     </div>
                 {% endif %}
             </div>
-            <div style="background-color: #4ac1f7; text-align: center; padding: 0; margin-left: 0"
+            <div style="background-color: #4ac1f7; text-align: center; padding: 0; margin-left: 0;"
                  class="col-sm-3">
                 {% if transport.driver and transport.car %}
                     <h3> Zdefiniowany Transport:</h3>
