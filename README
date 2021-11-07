@@ -1,10 +1,13 @@
-Web aplication in Django to To handle transport in small company.
+Web aplication in Django To handle transport in small company.
 It is used to determine deliveries and preview delivery locations on the map.
 Ultimately, the application should reduce delivery costs by visually suggesting a combination of shipping.
 
 
 When order is added address is converted to geocode (lat, long) by using Google API.
-We can see all 'new' deliveries on main page and go to the detail view were a single delivery is shown on map.
+We can see all 'new' deliveries on main page and see their "points" on the map. Once an order is clicked we are redirected 
+to detail order view where we can change status of the transport, from this point the order can be deleted or modified. 
 
+Orders can be filtered by name of client. phone number etc.
 
-
+There are 54 tests for the app. 
+Database has been made in postgreSQL.
