@@ -13,7 +13,7 @@ When order is added address is converted to geocode (lat, long) by using Google 
 We can see all 'new' deliveries on main page and go to the detail view were a single delivery is shown on map.
 
 ## Where you can see it?
-Aplication is available on: https://smarttransport.herokuapp.com/  
+Aplication is available on: https://smarttransport.herokuapp.com/
 Login: test
 Password: test
 
